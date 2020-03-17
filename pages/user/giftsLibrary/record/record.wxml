@@ -1,0 +1,15 @@
+<!--pages/plug-in/giftsLibrary/record/record.wxml-->
+<view class="recordList">
+  <view class="recordLi flex gridXb" wx:for="{{record_list}}">
+    <view class="sub recordCont">
+       <view class="title lineText2">{{item.goods_name}}</view>
+       <view class="time">{{item.exchange_time_str}}</view>
+    </view>
+    <view class="numberMoney">
+       <view class="money"><text class="info">￥</text>{{item.buy_price}}</view>
+       <view class="number">x {{item.exchange_num}}</view>
+       <!-- typeSuccess兑换成功  typeFailure过期失效-->
+       <view class="typeSuccess">兑换成功</view>
+    </view>
+  </view>
+</view>

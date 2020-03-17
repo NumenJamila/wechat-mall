@@ -1,0 +1,9 @@
+/* pages/user/myBusinessCard/myBusinessCard.wxss */
+
+
+.businessCardBox{padding: 30rpx;}
+.businessCard{background: #fff;border-radius: 10rpx;padding: 30rpx;align-items: center;margin-bottom: 24rpx;}
+.cardUserImg{width: 100rpx;height: 100rpx;border-radius: 50%;margin-right: 20rpx;}
+.cardUserNametext{display: inline-block;font-size: 32rpx;font-weight: bold;max-width: 400rpx;vertical-align: middle;}
+.cardUserTag{display: inline-block;font-size: 24rpx;color: #435d9e;padding: 0 10rpx;line-height: 36rpx;border-radius: 36rpx;background: #e9f0f4;margin-left: 20rpx;vertical-align: 2rpx;}
+.cardCompany{color: #666;margin-top: 8rpx;}

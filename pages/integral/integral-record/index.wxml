@@ -1,0 +1,174 @@
+<!--pages/integral/integral-record/index.wxml-->
+
+<!-- <view wx:if="{{0}}" class='goods-item mb10' wx:for='{{data}}' wx:key='{{item.id}}' catchtap='onNavigateTap' data-url='../integral-goods/index?id={{item.goods_id}}'>
+  <view class="goods-info gridXb">
+    <view class="goods-img mr10">
+      <image src="{{item.thumbnail}}" mode="aspectFill"></image>
+    </view>
+    <view class="goods-cont">
+      <view class="goods-name lineText">{{item.title}}</view>
+      <view class="goods-desc lineText2 f14 grey mt5">{{item.description}}</view>
+      <view class='f14 mt10'>
+        <view class="integral-time">兑换截至：{{item.end_time}}</view>
+        <view class="linght mt5">兑换码：{{item.key}}</view>
+        <view class="red mt5" wx:if='{{!item.is_end_time}}'>剩余{{item.surplus_day}}天</view>
+        <view class="grey mt5" wx:else>已截止</view>
+        <view class="linght" wx:if="{{item.name != ''}}">联系人姓名：{{item.name}}</view>
+        <view class="linght" wx:if="{{item.mobile != ''}}">联系电话：{{item.mobile}}</view>
+        <view class="linght" wx:if="{{item.address != ''}}">联系地址：{{item.address}}</view>
+      </view>
+    </view>
+  </view>
+  <view class='tr goods-btn-box'>
+    <button class="goods-btn" disabled='{{item.status == "1"}}' catchtap='onCopyTap' data-index='{{index}}'>{{item.status == "1" ? '已兑换' : '复制兑换码'}}</button>
+    <button class="goods-btn">兑换说明</button>
+  </view>
+</view> -->
+<!-- 暂无记录 -->
+<view class="no-content tc" wx:if='{{!isLoading && data.length==0}}'>
+  <image class="no-content-img" src='http://www.ixiaochengxu.cc/resource/images/common/no-message.png' mode='widthFix'></image>
+  <view class='f12 grey'>暂无记录</view>
+</view>
+
+<!-- 兑换记录商品 -->
+<view class="recordBox" wx:for='{{data}}' wx:key='{{item.id}}' catchtap='onNavigateTap' data-url='../integral-goods/index?id={{item.goods_id}}'>
+  <view class="goods_record">
+    <view class="recordTime flex gridXb">
+      <block wx:if="{{item.state=='已过期'}}">
+        <view class="sub time">过期时间：
+          <text>{{item.end_time}}</text>
+        </view>
+      </block>
+      <block  wx:elif="{{item.state=='待使用' || (item.state=='已完成' && item.goods_type==1 && item.order_status==0)}}">
+          <view class="sub time">兑换时间：
+            <text>{{item.create_time}}</text>
+          </view>
+      </block>
+      <block wx:elif="{{item.hexiao_time}}">
+          <view class="sub time">使用时间：
+            <text>{{item.hexiao_time}}</text>
+          </view>
+      </block>
+
+      <view class="goodsState used" wx:if="{{item.state=='待使用'}}">待使用</view>
+      <view class="goodsState success" wx:if="{{item.state=='已完成'}}">已完成</view>
+      <view class="goodsState overdue" wx:if="{{item.state=='已过期'}}">已过期</view>
+      <view class="goodsState overdue" wx:if="{{item.state=='已取消'}}">已取消</view>
+    </view>
+    <view class="recordCont">
+      <view class="flex goodsCont">
+        <block wx:if="{{item.goods_type==0}}">
+          <image src="{{item.thumbnail}}" class="goodsImg" mode="aspectFill"></image>
+        </block>
+        <block wx:else>
+          <view class="ImgBox">
+            <image src="http://www.ixiaochengxu.cc/resource/images/user/pointsMall/couponsBg.png" mode="aspectFill"></image>
+            <view class="coupons">
+              <view class="cost gridXb">{{item.coupon_info.yh}}</view>
+              <view class="conditions">满{{item.coupon_info.full_available}}可用</view>
+            </view>
+            <view class="angle">优惠券</view>
+          </view>
+        </block>
+
+        <view class="sub contText">
+          <view class="title lineText">{{item.title}}</view>
+          <!-- 使用限制 -->
+          <block wx:if="{{item.goods_type!=0}}">
+          <view class="restrictionsBox"><text class="useRestrictions lineText gridFour">限{{item.tags_str}}使用</text></view>
+          </block>
+          <view class="moneys flex">
+            <view class="left">
+              <text>{{item.sale_price}}</text>积分
+            </view>
+            <view class="freight">运费：￥{{item.shipping_fee}}</view>
+          </view>
+        </view>
+      </view>
+      <view class="addressBox" wx:if="{{item.user_delivery_info==1}}">
+        <view class="namePhone">
+          <text class="name">{{item.name}}</text>
+          <text class="phone">{{item.mobile}}</text>
+        </view>
+        <view class="address">{{item.address}}</view>
+      </view>
+      <view class="conversionBox" wx:if="{{item.order_status==0}}">
+        <view class="flex conversionEwm" >
+          <view class="sub numbers" wx:if="{{item.goods_type==0 }}" >
+              兑换码：{{item.key}}
+              <text catchtap='onCopyTap' data-index='{{index}}' data-type='duihuan'>复制</text>
+          </view>
+          <block  wx:if="{{item.order_status==0 }}" >
+              <view class="ewm"   catchtap="ewmClick" data-exam_code="{{item.key}}">二维码</view>
+          </block>
+        </view>
+        <!--快递-->
+        <view class="flex conversionEwm conversionCourier" wx:if="{{item.courier_number}}">
+          <view class="sub numbers">{{item.courier_company}}：{{item.courier_number}}
+            <text catchtap='onCopyTap' data-index='{{index}}' data-type='kuaidi'>复制</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 文字提示 -->
+<view class="font-tips mid" hidden='{{!isShowCopyTips}}'>复制成功</view>
+
+
+
+<!-- 兑换记录优惠券 -->
+<!-- <view class="recordBox">
+  <view class="goods_record">
+    <view class="recordTime flex gridXb">
+      <view class="sub time">兑换时间：
+        <text>2019-05-04</text>
+      </view>
+      <view class="used" wx:if="{{state==0}}">待使用</view>
+      <view class="success" wx:if="{{state==1}}">已完成</view>
+      <view class="overdue" wx:if="{{state==2}}">已过期</view>
+    </view>
+    <view class="recordCont">
+      <view class="flex goodsCont">
+        <view class="ImgBox">
+          <image src="http://www.ixiaochengxu.cc/resource/images/user/pointsMall/couponsBg.png" mode="aspectFill"></image>
+          <view class="coupons">
+            <view class="cost gridXb">300</view>
+            <view class="conditions">满300可用</view>
+          </view>
+          <view class="angle">优惠券</view>
+        </view>
+        <view class="sub contText">
+          <view class="title lineText">商品名称商品名称商</view>
+          <view class="moneys flex">
+            <view class="left">
+              <text>100</text>积分
+            </view>
+            <view class="freight">运费：￥10</view>
+          </view>
+        </view>
+      </view>
+      <view class="conversionBox conversionBox2" wx:if="{{state==0}}">
+        <view class="ewm" wx:if="{{state==0}}">去使用</view>
+      </view>
+    </view>
+  </view>
+</view> -->
+
+<!-- 核销码弹框 有-->
+<view class="ewmTck" hidden="{{ewmTck}}">
+  <view class="ewmBox">
+    <canvas class="scand-img" canvas-id="mycanvas" />
+    <view class="ewmText">核销码：{{exam_code}}</view>
+  </view>
+  <view class="tckBg" bindtap="ewmClick" catchtouchmove='true'></view>
+</view>
+<!-- 核销码弹框 无兑换数据-->
+<!-- <view class="ewmTck" wx:if="{{0}}">
+  <view class="ewmBoxNot">
+    <image src="http://www.ixiaochengxu.cc/resource/images/user/pointsMall/searchNot.png" mode="aspectFill"></image>
+    <view class="ewmText">暂无兑换数据</view>
+  </view>
+  <view class="tckBg" bindtap="ewmClick" catchtouchmove='true'></view>
+</view> -->

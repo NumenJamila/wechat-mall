@@ -1,0 +1,9 @@
+<import src="/pages/superHome/custom/tpl.wxml" />
+<import src="/wxParse/wxParse.wxml" />
+<view class="pg-collectTips flex" wx:if='{{isShowCollectionTips}}'>
+	<view class="pg-collectTipText sub">点击“ <image class="pg-collectTipImg" 
+	src="http://www.ixiaochengxu.cc/resource/images/common/ico_more.png" mode="widthFix" /> ”添加到我的小程序，即可快速访问本小程序</view>
+	<view class="pg-collectTipClose" bindtap='onCollectCloseTap' onTap='onCollectCloseTap'>
+	<text class="pg-collectTipCloseIco"></text>
+	</view>
+</view><view class="page-cont"><view class="modular {{config_options['dg236766703'].classList}}" style="{{config_options['dg236766703'].style}}"><template is="dg-live-room" data="{{options:config_options['dg236766703']}}"></template></view></view><view class="asideFloatBox"></view>

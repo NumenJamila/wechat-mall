@@ -1,0 +1,62 @@
+[<!--pages/user/userPush/userPush.wxml-->
+<!-- 顶部固定 -->
+<view class="topSortBox">
+  <view class="topSortFiexd gridXb" catchtap='openSelect'>{{module_list[module_index].name}}-{{module_list[module_index].active[active_index].name}}<text class="iconfont icon-xiangxia1"></text></view>
+</view>
+<!-- 筛选 -->
+<view class="floatBox selectPopBox" wx:if="{{open_select}}">
+  <view class="floatBoxBg"></view>
+  <view class="selectPopCont flex">
+    <scroll-view class="sub selectTitBox" scroll-y="true">
+      <view wx:if="{{module_list}}" wx:for="{{module_list}}" wx:key="" wx:for-index="index" wx:for-item="item" catchtap='selectModule' data-module_index="{{index}}" class="selectTitItem {{module_index == index ? 'active' : ''}}" hover-class="hover">{{item.name}}</view>
+    </scroll-view>
+    <scroll-view class="sub selectContBox" scroll-x="true">
+      <view wx:for="{{module_list[module_index].active}}" wx:key="" wx:for-index="idx" wx:for-item="it" catchtap='selectActive' data-active_index="{{idx}}" class="selectContItem {{active_index == idx ? 'active' : ''}}" hover-class="hover">{{it.name}}</view>
+    </scroll-view>
+  </view>
+</view>
+
+<!-- 优惠券列表 -->
+<view class="couponListBox" wx:if="{{module_list[module_index].active[active_index].name == '优惠券'}}">
+  <view class="couponList flex"  wx:for="{{active_info}}">
+    <view class="couponPriceBox">
+      <text class="couponPriceNum">{{item.q_dai_jiner}}</text>
+      <text>元</text>
+    </view>
+    <view class="sub">
+      <view class="lineText couponTitle">定向发放优惠券</view>
+      <view class="lineText couponTips">满{{item.q_dai_limit_jiner}}元使用</view>
+    </view>
+    <button class="couponBtn" bindtap='pushTemplate' data-jump_id="{{item.id}}" data-jump_name="{{item.q_name}}" data-jump_url="pages/shop/mallquan-noshare/mallquan-noshare?qid={{item.id}}"><text class="iconfont icon-fenxiang"></text></button>
+  </view>
+</view>
+
+<!-- 商品 -->
+<view class="goodsListBox" wx:if="{{module_list[module_index].active[active_index].name == '商品'}}">
+  <view class="goodsList flex" wx:for="{{active_info}}">
+    <image class="goodsListImg" src="{{item.g_img}}" mode="aspectFill"></image>
+    <view class="sub">
+      <view class="goodsListTitle lineText2">{{item.g_name}}</view>
+      <view class="flex goodsListInfo">
+        <view class="sub">
+          <text class="goodsInfoTag">促</text>
+          <text class="goodsPrice">¥</text>
+          <text class="goodsPriceNum">{{item.shop_price}}</text>
+          <text class="goodsPriceDel">¥{{item.market_price}}</text>
+        </view>
+        <button class="couponBtn" bindtap='pushTemplate' data-jump_id="{{item.id}}" data-jump_name="{{item.g_name}}" data-jump_url="pages/shop/malldetail/malldetail?sid={{item.id}}"><text class="iconfont icon-fenxiang"></text></button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 秒杀 -->
+<view class="spikeListBox" wx:if="{{module_list[module_index].active[active_index].name == '秒杀'}}">
+  <view class="flex spikeList" wx:for="{{active_info}}">
+    <view class="sub">
+      <view class="spikeListTit lineText2">{{item.name}}</view>
+      <view class="spikeListTime">{{item.seckill_config.rule_txt}}：{{item.seckill_config.start_time}}-{{item.seckill_config.end_time}}</view>
+    </view>
+    <button class="couponBtn" bindtap='pushTemplate' data-jump_id="{{item.id}}" data-jump_name="{{item.name}}" data-jump_url="pages/shop/seckill/seckill-list/index?id={{item.id}}"><text class="iconfont icon-fenxiang"></text></button>
+  </view>
+</view>

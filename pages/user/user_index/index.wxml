@@ -1,0 +1,314 @@
+<view class="glo_load_view" wx:if="{{!is_loaded}}">
+  <view class="loding grey mt10 mb10 tc f14">
+    <text class="mr10 loading-icon"></text>
+    <text class="mt10">正在加载中...</text>
+  </view>
+</view>
+<block wx:else>
+  <view class="user_content">
+    <view class="user-elembg">
+      <image class="user-elem" src="http://ixiaochengxu.cc/resource/images/user/element-bg.png" mode='aspectFit'></image>
+      <image class="user-elem" src="http://ixiaochengxu.cc/resource/images/user/element-bg.png" mode='aspectFit'></image>
+    </view>
+    <view class="Member_head flex">
+      <image class="userinfo-avatar" catchtap="onNavigateTap" data-url="../user_edit/index" src="{{userInfo.headimgurl}}" mode="aspectFill"></image>
+      <view class="userinfo_name-box sub">
+        <view>
+          <view class="userinfo_name lineText" catchtap="onNavigateTap" data-url="../user_edit/index">{{userInfo.nickname}}</view>
+          <view class="tongbu-btn" catchtap="onNavigateTap" data-name="wechat_info_sync">
+            <text class="iconfont icon-tongbuxinxi"></text>
+          </view>
+          <text wx:if="{{userInfo.is_vip == 1}}" class='iconfont icon-vip' style='color:#F98821;'></text>
+        </view>
+        <view class="tellBinding" wx:if="{{userInfo.unique_phone && userInfo.unique_phone != 'undefined'}}">{{userInfo.unique_phone}}</view>
+        <button class="tellBinding" open-type='getPhoneNumber' bindgetphonenumber='onGetPhoneNumber' wx:if="{{!(userInfo.unique_phone && userInfo.unique_phone != 'undefined')}}">手机绑定</button>
+      </view>
+      <view class="settingBtnIco" catchtap="showQRCode" data-url="/pages/user/setting/index">
+        <block wx:if="{{is_show_sign==true}}">
+          <button class="settingBtn">签到</button>
+        </block>
+        <block wx:else>
+          <text class="iconfont icon-erweima1"></text>
+        </block>
+      </view>
+    </view>
+
+    <!-- vip -->
+    <view class="vip-box" wx:if="{{is_open_card}}">
+      <!-- 开通会员 -->
+      <block wx:if='{{card_info.status==0}}'>
+        <view class="open-member flex">
+          <view class="open-member-txt sub">
+            <text class="iconfont icon-huiyuan"></text>会员特权</view>
+          <view>
+            <button class="open-member-btn" hover-class="hover" catchtap='onNavigateTap' data-url="../member/member-center/index">查看详情</button>
+          </view>
+        </view>
+        <view class="f14 lineText">消费返积分，各种特权享不停</view>
+      </block>
+      <block wx:else>
+        <view class="open-member flex" catchtap='onNavigateTap' data-url="../member/member-center/index">
+          <view class="sub">
+            <view>账户余额（元）</view>
+            <view>￥
+              <text class="vip-balance f20">{{card_info.recharge}}</text>
+            </view>
+          </view>
+          <view wx:if="{{card_info.recharge_status}}">
+            <button class="open-member-btn" hover-class="hover">充值有礼</button>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <!-- 开通会员 -->
+  <view class="open-member-pop floatBox {{open_card_version == 1 ? '' : 'hidden'}}" hidden='{{!card_info.show}}'>
+    <view class="pop-cont mid">
+      <view class="recharge-colse" catchtap='onSetValueTap' data-name='card_info' data-value='{"show":false}' data-is-multi='true'></view>
+      <view class='tc fb f18 mb15'>开通会员</view>
+      <input class="pop-tel-inp" placeholder="请输入您的姓名" placeholder-style='font-size:14px' maxlength='12' bindinput='onInputValue' data-name='card_name' />
+      <view class="pop-check-box flex mt10">
+        <input class="pop-tel-check sub mr10" type='number' placeholder="请输入手机号" placeholder-style='font-size:14px' bindinput='onInputValue' value='{{open_card_info.phone}}' data-name='phone' maxlength='11' />
+        <button class="get-code" open-type='getPhoneNumber' disabled='{{open_card_info.isDisabled}}' bindgetphonenumber='onGetPhoneNumber'>获取手机号</button>
+      </view>
+      <view class="pop-check-box flex mt10">
+        <input class="pop-tel-check sub mr10" type='number' placeholder="请输入验证码" placeholder-style='font-size:14px' bindinput='onInputValue' data-name='verify_code' maxlength='6' />
+        <button class="get-code" catchtap='onGetVerifyCodeTap' disabled='{{reload_verify_time}}'>{{reload_verify_time?reload_verify_time+'秒后重新获取':'获取验证码'}}</button>
+      </view>
+
+      <button class="pop-sure-btn" catchtap='onOpenTap'>确认</button>
+    </view>
+    <view class="floatBox floatBoxBg" style='display:block;'></view>
+  </view>
+
+  <!--开通会员2.0版本  -->
+  <view class='popupBox {{card_info.show && open_card_version == 2 ? "" : "hidden"}}'>
+    <view class='shade_bg' catchtap='closeOpenCardPopUpBox'></view>
+    <view class='modal'>
+      <view class='modTit'>开通会员</view>
+      <view class='inpBox'>
+        <view class='f14'>您的称呼</view>
+        <input class='inp' bindinput='inputName' value="{{open_card_info.card_name || ''}}" placeholder='请填写你的姓名'></input>
+      </view>
+      <button class='ktBtn' disabled='{{!open_card_info.isDisabled}}' open-type='getPhoneNumber' bindgetphonenumber='onGetPhoneNumber'>授权微信手机极速开通</button>
+    </view>
+  </view>
+
+  <!--手机绑定  -->
+  <view class='popupBox' wx:if="{{authorize}}">
+    <view class='shade_bg' catchtap='closeAuthorize'></view>
+    <view class='modal'>
+      <view class='modTit'>授权信息</view>
+      <view class='inpBox'>
+        <view class='f14'>您的称呼</view>
+        <input class='inp' bindinput='authorizeInputName' value="{{authorize_info.name || ''}}" placeholder='请填写你的姓名'></input>
+      </view>
+      <button class='ktBtn' open-type='getPhoneNumber' bindgetphonenumber='onGetPhoneNumber'>授权微信手机极速开通</button>
+    </view>
+  </view>
+
+
+
+  <!-- 二维码弹窗 -->
+  <view class="floatBox" wx:if="{{show_qr_code}}">
+    <view class="floatBox floatBoxBg" style='display:block' catchtap='colseQRCode'></view>
+    <view class="codePopBox">
+      <image class='codePopImg' src='{{qr_code}}' mode='adpectFit'></image>
+      <button class="codePopBtn" catchtap='saveimage'>保存到手机</button>
+    </view>
+  </view>
+
+  <!-- <view class="my-menu">
+    <view class="my-menu-box gridXt headMenu">
+      <view class="forum-box menu-line gridXt">
+        <view class="my-menu-subitem" catchtap="onNavigateTap" data-url="../red-packet/packet/index" wx:if='{{is_open_wallet}}'>
+          <image class="my-menu-img" src="http://ixiaochengxu.cc/resource/images/user/money.png" mode="aspectFit"></image>
+          <text class="iconfont icon-fubao1"></text>
+          <view class="lineText">福包</view>
+        </view>
+        <view class="my-menu-subitem" catchtap="onNavigateTap" data-url="../../integral/integral-mall/index" wx:if='{{is_open_score}}'>
+          <image class="my-menu-img" src="http://ixiaochengxu.cc/resource/images/user/integral.png" mode="aspectFit"></image>
+          <text class="iconfont icon-jifen"></text>
+          <view class="lineText">积分商城</view>
+        </view>
+        <view class="my-menu-subitem" catchtap="onNavigateTap" data-url="../mcard/coupon" wx:if='{{is_open_coupon}}'>
+          <image class="my-menu-img" src="http://ixiaochengxu.cc/resource/images/user/card-package.png" mode="aspectFit"></image>
+          <text class="iconfont icon-kabao"></text>
+          <view class="lineText">卡包</view>
+        </view>
+      </view>
+    </view>
+  </view> -->
+
+  <!-- 项目块 -->
+  <view class="myCard">
+    <view class="myCardTit">我的卡片</view>
+    <view class="projectBlock">
+      <!-- 核销 -->
+      <!-- <template is="line_menu" wx:if="{{userInfo.exam}}" data="{{...heixiao}}" /> -->
+
+      <!-- 分销中心 -->
+      <!-- <template is="line_menu" wx:if="{{userInfo.distribution}}" data="{{...distribution}}" /> -->
+
+      <block wx:for="{{menus}}" wx:key="{{index}}">
+        <!-- 单行链接 -->
+        <!-- <template is="line_menu" wx:if="{{item.type=='line'}}" data="{{...item}}" /> -->
+
+        <!-- 列表组 -->
+        <template is="list_menu" wx:if="{{item.type=='list'}}" data="{{...item}}" />
+
+        <!-- 卡片 -->
+        <template is="card_menu" wx:if="{{item.type=='card'}}" data="{{...item}}" />
+      </block>
+      <!-- 运营中心 -->
+      <!-- <template is="line_menu" wx:if="{{userInfo.operating}}" data="{{...operating}}" /> -->
+    </view>
+  </view>
+
+  <!-- 我的工具 -->
+  <view class="myToolBox" wx:if="{{is_open_wallet || is_open_coupon || is_open_score || userInfo.distribution || userInfo.exam || userInfo.operating || is_open_locus || (is_open_locus && service_card_status)}}">
+    <view class="myToolBoxTit">我的工具</view>
+    <view class="myToolCont">
+      <view class="toolItem flex" catchtap="onNavigateTap" data-url="../red-packet/packet/index" wx:if='{{is_open_wallet}}'>
+        <image class="toolItemIco" src="http://www.ixiaochengxu.cc/resource/images/user/menu/ico_fubao.png" mode="aspectFill"></image>
+        <view class="sub">
+          <view class="toolItemTit">我的福包</view>
+          <view class="toolItemTips">余额￥{{userInfo.gold}}</view>
+        </view>
+      </view>
+      <view class="toolItem flex" catchtap="onNavigateTap" data-url="../mcard/coupon" wx:if='{{is_open_coupon}}'>
+        <image class="toolItemIco" src="http://www.ixiaochengxu.cc/resource/images/user/menu/ico_kabao.png" mode="aspectFill"></image>
+        <view class="sub">
+          <view class="toolItemTit">我的卡包</view>
+          <view class="toolItemTips">查看卡片、优惠券</view>
+        </view>
+      </view>
+      <view class="toolItem flex" catchtap="onNavigateTap" data-url="../../integral/integral-mall/index" wx:if='{{is_open_score}}'>
+        <image class="toolItemIco" src="http://www.ixiaochengxu.cc/resource/images/user/menu/ico_jifen.png" mode="aspectFill"></image>
+        <view class="sub">
+          <view class="toolItemTit">积分商城</view>
+          <view class="toolItemTips">剩余{{card_info.score}}积分</view>
+        </view>
+      </view>
+      <view class="toolItem flex" wx:if="{{userInfo.distribution}}" data-url="/pages/user/fenxiao/index/index" catchtap="onNavigateTap">
+        <image class="toolItemIco" src="http://www.ixiaochengxu.cc/resource/images/user/menu/ico_fenxiao.png" mode="aspectFill"></image>
+        <view class="sub">
+          <view class="toolItemTit">分销中心</view>
+          <view class="toolItemTips">查看我的分销</view>
+        </view>
+      </view>
+      <view class="toolItem flex" wx:if="{{userInfo.send_gift}}" data-url="/pages/user/giftsLibrary/index/index?in_type=1" catchtap="onNavigateTap">
+        <image class="toolItemIco" src="http://xrs.tupiancunchu.com/2019-11-08_5dc516619fbf6.png" mode="aspectFill"></image>
+        <view class="sub">
+          <view class="toolItemTit">赠品库</view>
+          <view class="toolItemTips">查看我的赠品</view>
+        </view>
+      </view>
+      <view class="toolItem flex" wx:if="{{userInfo.exam}}" data-url="/pages/user/exam/index" catchtap="onNavigateTap">
+        <image class="toolItemIco" src="http://www.ixiaochengxu.cc/resource/images/user/menu/ico_hexiao.png" mode="aspectFill"></image>
+        <view class="sub">
+          <view class="toolItemTit">扫码核销</view>
+          <view class="toolItemTips">小程序二维码核销</view>
+        </view>
+      </view>
+      <view class="toolItem flex" wx:if="{{userInfo.operating}}" catchtap="onNavigateTap" data-url="/pages/user/operate/operate-list/operate-list">
+        <image class="toolItemIco" src="http://www.ixiaochengxu.cc/resource/images/user/menu/ico_yunying.png" mode="aspectFill"></image>
+        <view class="sub">
+          <view class="toolItemTit">运营中心</view>
+          <view class="toolItemTips">运营案例分享</view>
+        </view>
+      </view>
+      <view class="toolItem flex" catchtap='onNavigateTap' data-url="/pages/user/businessCard/myBusinessCard/myBusinessCard" wx:if="{{is_open_locus}}">
+        <image class="toolItemIco" src="http://www.ixiaochengxu.cc/resource/images/user/menu/ico_kefu.png" mode="aspectFill"></image>
+        <view class="sub">
+          <view class="toolItemTit">商务名片</view>
+          <view class="toolItemTips">业务问题咨询</view>
+        </view>
+      </view>
+      <view class="toolItem flex" catchtap='onNavigateToAi' wx:if="{{is_open_locus && service_card_status}}">
+        <image class="toolItemIco" src="http://www.ixiaochengxu.cc/resource/images/user/menu/ico_rajectory.png" mode="aspectFill"></image>
+        <view class="sub">
+          <view class="toolItemTit">访客轨迹</view>
+          <view class="toolItemTips">数据化行为轨迹</view>
+        </view>
+      </view>
+    </view>
+  </view>
+<!-- 设置 -->
+  <view class="myCard">
+    <view class="projectBlock">
+      <block wx:for="{{menus}}" wx:key="{{index}}">
+        <!-- 单行链接 -->
+        <template is="line_menu" wx:if="{{item.type=='line'}}" data="{{...item}}" />
+      </block>
+      <!-- 运营中心 -->
+    </view>
+  </view>
+    <!-- 核销 -->
+    <!-- <template is="line_menu" wx:if="{{userInfo.exam}}" data="{{...heixiao}}" /> -->
+
+    <!-- 分销中心 -->
+    <!-- <template is="line_menu" wx:if="{{userInfo.distribution}}" data="{{...distribution}}" /> -->
+
+    <!-- <block wx:for="{{menus}}" wx:key="{{index}}"> -->
+    <!-- 单行链接 -->
+    <!-- <template is="line_menu" wx:if="{{item.type=='line'}}" data="{{...item}}" /> -->
+
+    <!-- 列表组 -->
+    <!-- <template is="list_menu" wx:if="{{item.type=='list'}}" data="{{...item}}" /> -->
+
+    <!-- 卡片 -->
+    <!-- <template is="card_menu" wx:if="{{item.type=='card'}}" data="{{...item}}" /> -->
+    <!-- </block> -->
+    <!-- 运营中心 -->
+    <!-- <template is="line_menu" wx:if="{{userInfo.operating}}" data="{{...operating}}" /> -->
+
+
+  <view class="copyright grey">
+    <view class="copyright-text" wx:if="{{userInfo.app_copy_right}}" catchtap='onCompanyTap'>{{userInfo.app_copy_right}}</view>
+  </view>
+
+</block>
+
+<!-- 单行链接 -->
+<template name="line_menu">
+  <view class="projectBlockItem links">
+    <view class="projectTit gridXt" wx:for="{{menus}}" wx:key="{{index}}" catchtap="onNavigateTap" data-name="{{item.name}}" data-url="/{{item.link}}">
+      <text class="iconfont {{item.icon?item.icon:'icon-circle'}} mr10"></text>
+      <text>{{item.text}}</text>
+    </view>
+  </view>
+</template>
+
+<!-- 列表组 -->
+<template name="list_menu">
+  <view class="projectBlockItem">
+   <!-- {{isshow == true ? 'arrowR arrowRv' :'arrowR'}} -->
+    <view class="projectTit" bindtap="onToggleTap" data-name="{{name}}">
+      <text class="projectTitIco iconfont {{icon?icon:'icon-circle'}}"></text>
+      <text>{{text}}</text>
+    </view>
+    <view class="projectListBox gridXt" wx:if="{{isshow}}">
+      <view class="projectListItem gridXb" wx:for="{{menus}}" wx:key="{{index}}" catchtap="onNavigateTap" data-name="{{item.name}}" data-url="/{{item.link}}">
+        <view class="arrowR">{{item.text}}</view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<!-- 卡片块 -->
+<template name="card_menu">
+  <view class="projectBlockItem">
+   <!-- {{isshow == true ? 'arrowR arrowRv' :'arrowR'}} -->
+    <view class="projectTit" bindtap="onToggleTap" data-name="{{name}}">
+      <text class="projectTitIco iconfont {{icon?icon:'icon-circle'}}"></text>
+      <text>{{text}}</text>
+    </view>
+    <view class="projectListBox projectListLine gridXt" wx:if="{{isshow}}">
+      <view class="projectListItem" wx:for="{{menus}}" wx:key="{{index}}" catchtap="onNavigateTap" data-name="{{item.name}}" data-url="/{{item.link}}">
+        <text class="iconfont {{item.icon?item.icon:'icon-circle'}}"></text>
+        <view class="lineText">{{item.text}}</view>
+      </view>
+    </view>
+  </view>
+</template>

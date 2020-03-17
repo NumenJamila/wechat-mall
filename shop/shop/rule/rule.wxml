@@ -1,0 +1,3 @@
+<view class="ruleBox" style="white-space:pre-wrap">
+{{rule}}
+</view>

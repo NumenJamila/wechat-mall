@@ -1,0 +1,47 @@
+/* pages/integral/integral-order/index.wxss */
+page{background: white;}
+.addressBox{width: 100%;height: 200rpx;border-bottom: 24rpx solid #f5f5f5;align-items: center;padding: 0 30rpx;}
+.addressBox .iconfont{height: 40rpx;}
+.addressBox image{width: 41rpx;height: 50rpx;margin-right: 30rpx;}
+.addressNot{display: flex;align-items: center;justify-content: center;height: 100%;width: 100%;font-size: 32rpx;}
+.addressNot .active{color: #FFBE18;}
+.addressHave{padding-right: 10rpx;display: flex;flex-direction: column;justify-content: center;height: 100%;}
+.addressHave .namePhone{line-height: 1.2;font-size: 32rpx;font-weight: bold}
+.addressHave .namePhone .name{margin-right: 50rpx;}
+.addressHave .address{font-size: 28rpx;color: #666;line-height: 1.2;margin-top: 20rpx;}
+
+.goodsBox{padding: 38rpx 30rpx;}
+.goodsImg{width: 120rpx;height: 120rpx;border-radius: 6rpx;margin-right: 18rpx;}
+.contText{display: flex;flex-direction: column;justify-content: space-between;}
+.contText .title{line-height: 1.2;font-size: 32rpx;color: #333;}
+.contText .moneys {line-height: 1;align-items: center;}
+.contText .moneys .left{font-size: 24rpx;color: #FE3043;}
+.contText .moneys .left text{font-size: 32rpx;font-weight: bold;}
+.contText .moneys .number{font-size: 24rpx;color: #666;}
+.freight{font-size: 28rpx;color: #666;padding: 30rpx;}
+
+.ImgBox{position: relative;width: 120rpx;height: 120rpx;border-radius: 6rpx;margin-right: 18rpx;color: white;}
+.ImgBox image{position: absolute;width: 100%;height: 100%;left: 0;top: 0;z-index: 1;}
+.ImgBox .coupons{position: relative;z-index: 2;display: flex;flex-direction: column;justify-content: center;height: 100%;}
+.ImgBox .conditions{font-size: 20rpx;line-height: 1;padding-top: 15rpx;text-align: center;}
+.ImgBox .cost{line-height: 1;text-align: center;padding-bottom: 15rpx;margin: 0 10rpx;position: relative;padding-left: 4rpx;}
+.ImgBox .cost::after{content: '￥';position: absolute;font-size: 18rpx;left: 0rpx;bottom: 15rpx;}
+
+.fiexd-box{height: 92rpx;}
+.integral-bottom{position: fixed;bottom: 0;left: 0;right: 0;}
+.integral-bottom button{border-radius: 0;}
+.integral-bottom button::after{border: none;}
+.integral-btn{background: #ebc35c;color: #fff;}
+.integral-btn:active{background:#e2bb55;}
+.redeem-code{background: #666;color: #fff;}
+
+.hoverBox{opacity: 0.8}
+
+.forInstructions{padding: 60rpx 30rpx;font-size: 28rpx;color: #999;line-height: 1.4}
+.forInstructions_title{color: #666;margin-bottom: 20rpx;}
+.rules{margin: 10rpx 0;}
+
+/* 使用限制 */
+.restrictionsBox{line-height: 1;}
+.useRestrictions{display: inline-block;font-size: 20rpx;color: #ebc35c;line-height: 1.6;padding: 0 10rpx;max-width: 100%;position: relative}
+.useRestrictions::before{border-color: #ebc35c;border-radius:8rpx;}

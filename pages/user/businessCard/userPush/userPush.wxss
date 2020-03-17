@@ -1,0 +1,51 @@
+/* pages/user/userPush/userPush.wxss */
+@import "/css/color/color.wxss";
+@import '/pages/user/common.wxss';
+
+/* 顶部固定 */
+.topSortBox{height: 92rpx;}
+.topSortFiexd{position: fixed;top: 0;left: 0;right: 0;background: #fff;line-height: 92rpx;text-align: center;font-size: 32rpx;z-index: 1;}
+.topSortFiexd .iconfont{color: #999;margin-left: 10rpx;line-height: 1;}
+
+/* 选择弹窗 */
+.selectPopBox{top: 92rpx;}
+.selectPopBox .floatBoxBg{width: 100%;height: 100%;position: absolute;top: 0;left: 0;display: block;}
+.selectPopCont{height: 700rpx;position: absolute;top: 0;left: 0;right: 0;background: #fff;z-index: 1;}
+.selectTitBox,.selectContBox{padding: 20rpx 0;}
+.selectTitItem,.selectContItem{line-height: 92rpx;padding: 0 40rpx;}
+.selectTitItem.hover{background: #f8f8f8;}
+.selectContBox{background: #f2f2f2;color: #666;}
+.selectTitItem.active{font-weight: bold;background: #f2f2f2;}
+.selectContItem.active,.selectContItem.hover{color: #09bb07;color: var(--mColor);}
+
+/* 优惠券列表 */
+.couponListBox{padding: 10rpx 30rpx 50rpx;}
+.couponList{border: 1px solid #f35150;background:#fef6f6;border-radius: 10rpx;padding: 40rpx 0;align-items: center;line-height: 1;position: relative;margin-top: 30rpx;}
+.couponList::before,.couponList::after{content: '';display: block;width: 28rpx;height: 28rpx;border-radius: 28rpx;position: absolute;left: 200rpx;background: #f2f2f2;border: 1px solid #f35150;transform: translateX(-50%);}
+.couponList::before{top: -16rpx;-webkit-clip-path:ellipse(100% 62% at 50% 100%);clip-path:ellipse(100% 62% at 50% 100%);}
+.couponList::after{bottom: -16rpx;-webkit-clip-path:ellipse(100% 62% at 50% 0);clip-path:ellipse(100% 62% at 50% 0);}
+.couponPriceBox{color: #f35150;width: 200rpx;padding: 0 20rpx;text-align: center;margin-right: 26rpx;position: relative;}
+.couponPriceBox::before{content: '';display: block;width: 1px;height: 80rpx;background: rgba(243, 80, 80, 0.17);position: absolute;top: 50%;transform: translateY(-50%);right: 0;}
+.couponPriceNum{font-weight: bold;font-size: 60rpx;}
+.couponTitle{font-size: 32rpx;}
+.couponTips{color: #999;margin-top: 20rpx;font-size: 24rpx;}
+.couponBtn{background: transparent;color: #f35150;font-size: 40rpx;line-height: 68rpx;padding: 0 20rpx;}
+.couponBtn::after{display: none;}
+
+/* 商品 */
+.goodsListBox{padding: 10rpx 30rpx 50rpx;}
+.goodsList{padding: 30rpx;background: #fff;border-radius: 10rpx;margin-top: 24rpx;}
+.goodsListImg{width: 160rpx;height: 160rpx;border-radius: 6rpx;margin-right: 20rpx;}
+.goodsListTitle{font-weight: bold;line-height: 1.4;}
+.goodsListInfo{margin-top: 20rpx;align-items: flex-end;}
+.goodsInfoTag{display: inline-block;background: #f35150;color: #fff;font-size: 20rpx;width: 32rpx;line-height: 32rpx;border-radius: 6rpx;text-align: center;margin-right: 10rpx;vertical-align: 6rpx;}
+.goodsPrice,.goodsPriceNum{color: #f35150;}
+.goodsPriceNum{font-size: 36rpx;font-weight: bold;}
+.goodsPriceDel{margin-left: 20rpx;font-size: 24rpx;color: #999;text-decoration: line-through;}
+
+/* 秒杀 */
+.spikeListBox{padding: 10rpx 30rpx 50rpx;}
+.spikeList{background: #fff;padding: 30rpx;border-radius: 10rpx;align-items: center;margin-top: 24rpx;}
+.spikeListTit{font-weight: bold;line-height: 1.4;}
+.spikeListTime{color: #f35150;font-size: 24rpx;margin-top: 20rpx;line-height: 1;}
+.spikeList .couponBtn{margin-left: 20rpx;}

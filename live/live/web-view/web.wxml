@@ -1,0 +1,6 @@
+<!--live/live/web-view/web.wxml-->
+<view class="page-body">
+  <view class="page-section page-section-gap">
+    <web-view src="{{src}}"></web-view>
+  </view>
+</view>

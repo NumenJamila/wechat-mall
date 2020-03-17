@@ -1,0 +1,78 @@
+/* pages/user/userDetail/userDetail.wxss */
+@import "/css/color/color.wxss";
+@import '/pages/user/common.wxss';
+
+.userInfoBox{width: 690rpx;padding: 30rpx;background: #fff;margin: 20rpx auto 0;box-shadow: 0 1rpx 13rpx rgba(148, 148, 148, 0.2);border-radius: 12rpx;position: relative;}
+.userImg{width: 100rpx;height: 100rpx;border-radius: 50%;margin-right: 20rpx;}
+.userName{font-weight: bold;font-size: 32rpx;margin-top: 10rpx;}
+.userTagsBox{margin-top: 10rpx;}
+.userTagItem{display: inline-block;color: #fc5a5a;background: #fceeee;font-size: 24rpx;padding: 0 14rpx;position: relative;line-height: 36rpx;border-radius: 36rpx;margin-top: 10rpx;margin-right: 10rpx;max-width: 100%;vertical-align: top;}
+.userTagItem:nth-child(5n+1){color: #fc5a5a;background: #fceeee;}
+.userTagItem:nth-child(5n+2){color:#fa9134;background: #fcf7ee;}
+.userTagItem:nth-child(5n+3){color:#6485d9;background: #eef5fc;}
+.userTagItem:nth-child(5n+4){color:#977ee8;background: #f1f1fd;}
+.userTagItem:nth-child(5n){color:#fd7af2;background: #fdf1fd;}
+.goods_name_color{color:red;}
+.nickname_color{color: #09bb07;color: var(--mColor);}
+
+
+
+.locusTabFiexd{width: 690rpx;background: #fff;line-height: 92rpx;text-align: center;justify-content: center;padding: 0 30rpx;font-size: 32rpx;margin: auto;border-radius: 0 0 12rpx 12rpx;}
+.locusTabItem{flex: 1;}
+.locusTabItem.active{font-weight: bold;position: relative;}
+.locusTabItem.active::before{content: '';display: block;width: 40%;height: 3px;background: #09bb07;background: var(--mColor);position: absolute;bottom: 0;left: 30%;}
+.locusTabItem.hover{background: #f2f2f2;}
+
+/* AI轨迹 */
+.locusContBox{padding: 30rpx;}
+.locusContItem{margin-bottom: 30rpx;}
+.locusContTime,.locusItemItem{font-size: 24rpx;color: #999;}
+.locusItem{background: #fff;padding: 20rpx;border-radius: 10rpx;align-items: center;margin-top: 20rpx;}
+.locusItemuser{width: 80rpx;height: 80rpx;border-radius: 50%;margin-right: 20rpx;}
+.locusItemInfo{color: #09bb07;color: var(--mColor);}
+.infoContBox{background: #fff;border-radius: 10rpx;padding:20rpx 0;margin-top: 20rpx;}
+.infoContTit{padding: 0 30rpx;font-size: 32rpx;font-weight: bold;margin-bottom: 10rpx;}
+.infoContTit .iconfont{font-weight: normal;font-size: 36rpx;margin-right: 8rpx;}
+.infoItem{display: inline-block;width: 25%;text-align: center;font-size: 24rpx;color: #666;padding: 20rpx 0;}
+.infoItemNum{font-size: 32rpx;font-weight: bold;color: #333;margin-top: 8rpx;}
+.cardItemBox .infoItem{width: 33.33%;}
+
+/* AI统计 */
+.filterDateTime{background: #fff;font-size: 28rpx;padding: 0 20rpx;line-height: 40rpx;border-radius: 40rpx;align-self: center;}
+.filterDateTime .iconfont{color: #999;}
+.filterDateTime.hover{background: #f8f8f8;}
+.filterDatePop{position: absolute;top: 360rpx;right: 46rpx;background: #fff;width: 140rpx;border-radius: 6rpx;box-shadow: 0 4rpx 10rpx rgba(153, 153, 153, 0.2);text-align: center;transform-origin: 100rpx 0;transform: scale(.4);animation: filterDateShow .2s linear forwards;}
+.filterDatePop::before{content: '';display: block;border-bottom: 12rpx solid #fff;border-left: 10rpx solid transparent;border-right: 10rpx solid transparent;position: absolute;top: 0;right: 40rpx;transform: translateY(-100%);}
+.filterDateItem{line-height: 68rpx;}
+@-webkit-keyframes filterDateShow{
+  0%{transform: scale(.4);}
+  100%{transform: scale(1);}
+}
+@keyframes filterDateShow{
+  0%{transform: scale(.4);}
+  100%{transform: scale(1);}
+}
+
+/* AI记录 */
+.recordingItem{background: #fff;border-radius: 10rpx;overflow: hidden;margin-top: 20rpx;}
+.recordingUserInfo{padding: 20rpx;align-items: center;}
+.recordingMoreIco{display: inline-block;font-size: 24rpx;color: #999;padding: 10rpx 20rpx;transition: all .3s linear;}
+.recordingMsgBox{padding: 10rpx 20rpx 16rpx;line-height: 1.4;font-size: 24rpx;color: #666;}
+.recordingMsgItem{padding: 10rpx 0;}
+.recordingMsgItem .locusItemItem{margin-left: 20rpx;}
+
+.recordingUserInfo.active .recordingMoreIco{transform: rotate(180deg);}
+
+/* 底部固定 */
+.bottomFiexdBox{height: 148rpx;}
+.locusBottomTips{position: fixed;bottom: 92rpx;left: 0;right: 0;text-align: center;line-height: 56rpx;background: rgba(9,187,7,.1);color: #09bb07;background: rgba(var(--mColorRgb),.1);color: var(--mColor);}
+.bottomFiexd{position: fixed;bottom: 0;left: 0;right: 0;background: #fff;text-align: center;line-height: 92rpx;}
+.bottomItemBtn .iconfont{font-size: 36rpx;vertical-align: middle;margin-right: 8rpx;}
+.bottomItemBtn.hover{background: #f8f8f8;}
+
+/* 新增标签弹窗 */
+.labelPopBox .floatBoxBg{display: block;background: transparent;width: 100%;height: 100%;position: absolute;top: 0;left: 0;}
+.labelPopCont{position: absolute;bottom: 0;left: 0;right: 0;background: #fff;padding: 20rpx 30rpx;align-items: center;}
+.labelPopInp{padding: 0 20rpx;background: #f8f8f8;border-radius: 60rpx;height: 60rpx;font-size: 28rpx;}
+.labelPopBtn{background: var(--mColor);color: #fff;line-height: 56rpx;border-radius: 56rpx;font-size: 28rpx;margin-left: 24rpx;}
+.labelPopBtn::after{display: none;}

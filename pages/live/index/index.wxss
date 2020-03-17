@@ -1,0 +1,82 @@
+/* pages/Live/index/index.wxss */
+@import "../common/common.wxss";
+
+/* 轮播图 */
+.bannerBox{padding: 20rpx 0;}
+.bannerCont{height: 232rpx;}
+.bannerItem{padding: 0 10rpx;box-sizing: border-box;}
+.bannerImg{width: 100%;height: 100%;border-radius: 8rpx;}
+
+.liveBox{padding: 20rpx 24rpx;}
+.liveItem{background: #fff;border-radius: 10rpx;overflow: hidden;position: relative;}
+.liveItem:nth-child(n+2){margin-top: 20rpx;}
+.liveCoverBox{width: 100%;height: 516rpx;position: relative;}
+.liveItemCover{width: 100%;height: 100%;}
+.liveState{font-size: 22rpx;padding: 6rpx 16rpx;line-height: normal;border-radius: 6rpx;position: absolute;top: 10rpx;right: 12rpx;background: #f35150;color: #fff;z-index: 1;}
+.liveState .iconfont{font-size: 24rpx;margin-right: 4rpx;}
+.liveState.reservation{background: rgba(0, 0, 0, .5);padding: 0;padding-left: 16rpx;display: flex;display: -webkit-flex;align-items: center;overflow: hidden;}
+.liveState.reservation text{background: #7e31e7;padding: 6rpx 20rpx;margin-left: 16rpx;}
+.liveState.replay{background: #a8b5c5;}
+.liveInfoBox{padding: 30rpx 30rpx 20rpx;}
+.liveTitle{font-weight: bold;}
+.liveAnchor{font-size: 24rpx;color: #999;}
+.liveShareBtn{align-self: center;padding: 0 26rpx;line-height: 60rpx;margin-right: -10rpx;color: #666;}
+.liveShareBtn.hover{opacity: .8;}
+/* 直播预约按钮 */
+page .subscribe--live-player-subscribe__btn{background: #7e31e7;font-size: 24rpx;line-height: normal;padding: 6rpx 20rpx;margin-left: 16rpx;height: auto;width: auto;border-radius: 6rpx;}
+page .subscribe--live-player-hasSubscribe{background: #fff;color: #7e31e7;}
+
+/* 直播商品 */
+.liveGoodsBox{overflow: hidden;}
+.liveGoodsItem{width: 80rpx;height: 80rpx;border-radius: 6rpx;}
+.liveGoodsItem:nth-child(n+2){margin-left: 10rpx;}
+
+/* 大图展示 */
+.liveBlockBox .liveState{right: 30rpx;top: 20rpx;}
+.liveBlockBox .liveInfoBox{position: absolute;bottom: 0;left: 0;right: 0;background-image: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.5));color: #fff;}
+.liveBlockBox .liveAnchor{color: initial;opacity: .7;}
+.liveBlockBox .liveGoodsBox{padding: 20rpx 30rpx;height: 140rpx;}
+.liveBlockBox .liveGoodsItem{width: 100rpx;height: 100rpx;border-radius: 6rpx;}
+.liveBlockBox .liveShareBtn{color: inherit;}
+
+/* 列表 */
+.liveListBlock .liveItem{display: flex;display: -webkit-flex;padding: 20rpx 24rpx;}
+.liveListBlock .liveCoverBox{width: 300rpx;height: 240rpx;margin-right: 20rpx;border-radius: 6rpx;overflow: hidden;}
+.liveListBlock .liveState{right: inherit;left: 10rpx;}
+.liveListBlock .liveInfoBox{flex: 1;overflow: hidden;padding: 0;}
+.liveGoods{margin-top: 40rpx;}
+.liveListBlock .liveGoodsBox{margin-top: 10rpx;height: 80rpx;flex: 1;}
+/* 两列 */
+.liveColBlock .liveItem{display: inline-block;width: 340rpx;vertical-align: top;margin-top: 0;}
+.liveColBlock .liveItem:not(:nth-child(2n)){margin-right: 20rpx;}
+.liveColBlock .liveItem:nth-child(n+3){margin-top: 20rpx;}
+.liveColBlock .liveCoverBox{height: 272rpx;}
+.liveColBlock .liveGoodsBox{position: absolute;bottom: 0;left: 0;right: 0;padding: 10rpx 20rpx;background-image: linear-gradient(rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.5));height: 80rpx;}
+.liveColBlock .liveGoodsItem{width: 54rpx;height: 54rpx;}
+.liveColBlock .liveInfoBox{padding: 10rpx 16rpx;}
+.liveColBlock .liveShareBtn{line-height: 48rpx;}
+
+/* 分享弹窗 */
+.PopupBox{position: fixed;top: 0;left: 0;bottom: 0;right: 0;z-index: 1;}
+.PopupBg{position: absolute;top: 0;left: 0;width: 100%;height: 100%;background: rgba(0, 0, 0, .5);}
+.PopupBottom{position: absolute;bottom: 0;left: 0;right: 0;z-index: 1;background: #fff;animation: fadeIn .2s linear;}
+.shareBox{padding: 80rpx 100rpx;}
+.shareItem{background: transparent;line-height: normal;font-size: 24rpx;color: #666;text-align: center;padding: 30rpx 0;border-radius: 8rpx;}
+.shareItem:hover{background: #f5f5f5;}
+.shareItem::after{display: none;}
+.shareItemImg{width: 80rpx;height: 80rpx;margin-bottom: 20rpx;}
+
+@keyframes fadeIn{
+0%{-webkit-transform: translateY(100%);transform: translateY(100%);}
+100%{-webkit-transform: translateY(0%);transform: translateY(0%);}
+}
+/* 海报弹窗 */
+.PopupCenter{position: absolute;top: 50%;left: 50%;-webkit-transform: translate(-50%,-50%);transform: translate(-50%,-50%);z-index: 1;}
+.posterBox{width: 660rpx;height: 1000rpx;text-align: center;}
+.posterCanvas{transform-origin: 0 0;position: absolute;top: 0;left: 0;opacity: 0;pointer-events: none;width: 660rpx;height: 1000rpx;}
+.posterCont{background: #fff;border-radius: 12rpx;overflow: hidden;height: 100%;}
+.posterImg{width: 100%;height: 384rpx;}
+.posterTitle{font-weight: bold;color: #666;margin-top: 20rpx;padding: 0 36rpx;}
+.posterTime{font-size: 24rpx;color: #999;margin-top: 10rpx;}
+.posterCodeImg{width: 240rpx;height: 240rpx;margin-top: 30rpx;}
+.posterTips{font-size: 24rpx;color: #999;margin-top: 20rpx;}

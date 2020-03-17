@@ -1,0 +1,113 @@
+<!--pages/integral-mall/index.wxml-->
+<block wx:if='{{isLoading}}'>
+  <view class="linght tc" style='margin-top:45%;' hidden="{{!isLoading}}">
+    <text class="loading-icon mr10 f18"></text>
+    <text>正在加载中...</text>
+  </view>
+</block>
+
+<block wx:else>
+  <view class="integral-box">
+    <view>
+      <view class="integral-num">
+        <text class="integral-number mr5">{{score}}</text>积分
+      </view>
+      <view class="integral-detail">
+        <text catchtap='onNavigateTap' data-url='../integral-detail/index' data-tpl-id = "{{card_config.set_score_success_tpl_id}}">积分明细</text>
+        <text class='integral-tit'>|</text>
+        <text catchtap='onNavigateTap' data-url='../integral-info/index'>如何获取积分</text>
+      </view>
+    </view>
+    <button class="exchange-record" catchtap='onNavigateTap' data-url='../integral-record/index'>兑换记录</button>
+  </view>
+  <!-- 优惠券专区 -->
+  <view class="integral-mall" wx:if="{{couponData.length > 0}}">
+    <view class="integral-mall-tit gridXb flex">
+      <view class="sub">优惠券专区</view>
+      <view class="more" bindtap="navigatorMore" data-action_name="getCouponList">更多</view>
+    </view>
+    <view class="mall-box">
+      <view class="mall-item flex" wx:for='{{couponData}}' wx:key='{{item.id}}' catchtap='onNavigateTap' data-url='../integral-goods/index?id={{item.id}}'>
+        <view class="goods-img mr15 couponsImg">
+          <image src="http://www.ixiaochengxu.cc/resource/images/user/pointsMall/couponsBg.png" mode="aspectFill"></image>
+          <view class="cont">
+            <view class="couponsPrice gridXb">
+              <text>{{item.coupon_info.yh}}</text>
+            </view>
+            <view class="couponsRule">满{{item.coupon_info.full_available}}可用</view>
+          </view>
+        </view>
+        <view class="sub flex flexC">
+          <view class="sub flex goods_text">
+            <view>
+              <view class="goods-name lineText">{{item.title}}</view>
+              <view class="goods-desc grey f12 lineText">{{item.description}}</view>
+            </view>
+            <!-- 使用限制 -->
+            <view class="restrictionsBox"><text class="useRestrictions lineText gridFour">限{{item.tags_str}}使用</text></view>
+            <view class="goods-integral f14">
+              <text class="f18 red">{{item.sale_price}}</text>
+              <text> 积分</text>
+              <text class="ml10 delLine linght">￥{{item.market_price}}</text>
+            </view>
+          </view>
+          <view>
+          </view>
+        </view>
+      </view>
+      <!-- 暂无 -->
+      <view class="no-content tc" wx:if="{{couponData.length==0}}">
+        <image class="no-content-img" src='http://www.ixiaochengxu.cc/resource/images/common/no-message.png' mode='widthFix'></image>
+        <view class='f12 grey'>暂无优惠券</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 商品专区 -->
+  <view class="integral-mall">
+    <view class="integral-mall-tit gridXb flex">
+      <view class="sub">商品专区</view>
+      <view class="more" bindtap="navigatorMore" data-action_name="getNewGoodsList">更多</view>
+    </view>
+    <view class="mall-box">
+      <view class="mall-item flex" wx:for='{{data}}' wx:key='{{item.id}}' catchtap='onNavigateTap' data-url='../integral-goods/index?id={{item.id}}'>
+        <view class="goods-img mr15">
+          <image src="{{item.thumbnail}}" mode="aspectFill"></image>
+        </view>
+        <view class="sub flex flexC">
+          <view class="sub flex goods_text">
+            <view>
+              <view class="goods-name lineText2">{{item.title}}</view>
+              <view class="goods-desc grey f12 lineText2">{{item.description}}</view>
+            </view>
+            <view class="goods-integral f14">
+              <text class="f18 red">{{item.sale_price}}</text>
+              <text> 积分</text>
+              <text class="ml10 delLine linght">￥{{item.market_price}}</text>
+            </view>
+          </view>
+          <view>
+            <!-- <button class="exchange-btn">兑换</button> -->
+          </view>
+        </view>
+      </view>
+      <!-- 暂无 -->
+      <view class="no-content tc" wx:if="{{data.length==0 && hasMore ==false}}">
+        <image class="no-content-img" src='http://www.ixiaochengxu.cc/resource/images/common/no-message.png' mode='widthFix'></image>
+        <view class='f12 grey'>暂无商品</view>
+      </view>
+    </view>
+    <view class='nothing tc linght flex mt10 mb10' hidden="{{hasMore}}">
+      <text class="sub line mr10"></text>
+      <text>没有更多了</text>
+      <text class="sub line ml10"></text>
+    </view>
+  </view>
+
+  <!-- 回到首页 -->
+  <view class="navigatorIndex" hover-class="hoverBtn" catchtap="goIndex">
+    <!-- <image class="navigatorImg" src="/images/goIndex.png" mode="aspectFill"></image> -->
+    <text class="iconfont icon-homefill navigatorHome"></text>
+    <view class="navigatorText">首页</view>
+  </view>
+</block>

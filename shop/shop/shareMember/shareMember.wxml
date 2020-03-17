@@ -1,0 +1,93 @@
+<!--pages/shop/shareMember/shareMember.wxml-->
+
+<view class="pageContBox">
+  <!-- 自己分享状态 -->
+  <view wx:if="{{type==1}}">
+    <view class="couponBox">
+      <view class="couponBg">
+        <view class="couponCont">
+          <view class="couponTitle">VIP+体验券</view>
+          <view class="couponDayBox"><text class="couponDayNum">{{send_info.send_info.send_days}}</text> 天</view>
+        </view>
+      </view>
+      <!-- 卡包封面 -->
+      <image class="couponCover" src="https://www.ixiaochengxu.cc/resource/images/shop/vip/cardImg.png" mode="widthFix"></image>
+    </view>
+    <!-- 领取进度 -->
+    <progress percent="{{send_info.share_info.percent}}" active="true"></progress>
+    <view class="shareTips">给{{send_info.send_info.send_num}}个好友免费送体验券，最多获得{{send_info.send_info.send_days * send_info.send_info.send_num}}天VIP+权限</view>
+    <view class="couponShareBox">
+      <button class="couponBtnItem" open-type="share" wx:if="{{send_info.is_satisfy}}">赠予好友</button>
+    </view>
+  </view>
+  <!-- 好友领取状态 -->
+  <view class="couponReceiveBox" wx:if="{{type==2}}">
+    <view class="couponReceiveTop"></view>
+    <view class="couponReceiveCont">
+      <view class="receiveTopInfo">
+        <view class="flex shareUserBox">
+          <image class="shareUser" src="{{send_info.share_info.headimgurl}}" mode="aspectFill"></image>
+          <view class="sub lineText">{{send_info.share_info.nickname}}</view>
+        </view>
+        <view class="receiveTitle">赠送你一张VIP+体验券</view>
+      </view>
+      <view class="receiveBottomInfo">
+        <view class="cardFace {{send_info.share_info.residue_num<=0?'grabbed':''}}">
+          <view class="flex">
+            <view class="sub lineText cardTitle">{{send_info.share_info.send_days}}天VIP+体验券</view>
+            <view class="cardRemaining">仅剩{{send_info.share_info.residue_num}}张</view>
+          </view>
+          <view class="cardReceiveTips">领取即生效</view>
+        </view>
+        <view class="couponShareBox">
+          <button class="couponBtnItem" wx:if="{{!send_info.share_info.can_receive}}" catchtap="jumpToSuperMember">{{send_info.share_info.no_can_receive_info}}</button>
+          <button wx:if="{{send_info.share_info.can_receive}}" class="couponBtnItem" open-type='getPhoneNumber' bindgetphonenumber='onGetPhoneNumber' disabled="{{!can_receive}}">立即领取</button>
+          <!-- <button wx:if="{{send_info.share_info.can_receive}}" class="couponBtnItem couponBtnLine">赠予好友</button> -->
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 赠送记录/领取记录 -->
+  <view class="contItemBox">
+    <view class="contItemTitle">
+      <image class="contTitleIco" src="https://www.ixiaochengxu.cc/resource/images/shop/vip/titleBg.png" mode="aspectFit"></image>
+      <text>赠送记录</text>
+      <image class="contTitleIco" src="https://www.ixiaochengxu.cc/resource/images/shop/vip/titleBg.png" mode="aspectFit"></image>
+    </view>
+    <view class="recordingBox">
+      <view class="recordingItem flex" wx:for="{{receive_list}}" wx:key="">
+        <image class="recordingUser" src="{{item.receive_user_info.headimgurl}}" mode="aspectFill"></image>
+        <view class="sub">
+          <view class="flex">
+            <view class="sub recordingUserName lineText">{{item.receive_user_info.nickname}}</view>
+            <view class="recordingTime">{{item.add_time_str}}</view>
+          </view>
+          <view class="flex recordingTipBox">
+            <view class="recordingTips linetext sub">{{item.thank_speak}}</view>
+            <view class="recordingTime">{{item.send_days_str}}</view>
+          </view>
+          
+        </view>
+      </view>
+      <view class="recordingMore" catchtap="getReceiveList" wx:if="{{receive_load_more}}">查看更多<text class="iconfont icon-youjiantou"></text></view>
+    </view>
+  </view>
+  <!-- 规则说明 自己分享的时候显示 -->
+  <view class="contItemBox" wx:if="{{type==1}}">
+    <view class="contItemTitle">
+      <image class="contTitleIco" src="https://www.ixiaochengxu.cc/resource/images/shop/vip/titleBg.png" mode="aspectFit"></image>
+      <text>规则说明</text>
+      <image class="contTitleIco" src="https://www.ixiaochengxu.cc/resource/images/shop/vip/titleBg.png" mode="aspectFit"></image>
+    </view>
+    <view class="ruleBox">
+      <view class="ruleItem">1.好友领取成功，自己也可得指定天数VIP+。</view>
+      <view class="ruleItem">2.VIP+体验券从领取日起开始生效</view>
+      <view class="ruleItem">3.每个新客户只有一次领取VIP+体验券机会</view>
+      <view class="ruleItem">{{send_info.send_info.rule}}</view>
+    </view>
+  </view>
+
+  <view class="contItemBox" wx:if="{{type==2}}">
+  {{send_info.send_info.rule}}
+  </view>
+</view>

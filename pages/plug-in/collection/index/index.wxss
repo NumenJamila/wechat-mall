@@ -1,0 +1,66 @@
+/* pages/plug-in/collection/index/index.wxss */
+@import '/wxParse/wxParse.wxss';
+page{background: #fd5136;font-size: 32rpx;}
+.pageBox{min-height: 100vh;background: #fd5136;}
+
+.topBanner{width: 750rpx;height: 250rpx;}
+
+.collectionCont{width: 690rpx;margin: 0 auto 40rpx;background: #fff;border-radius: 12rpx;padding: 10rpx 30rpx 60rpx;}
+.activeTime{text-align: center;font-size: 28rpx;margin-top: 20rpx;}
+
+.contItemBox{margin-top: 40rpx;}
+.contItemTit{width: 268rpx;background: #fc5151;color: #fff;margin: auto;text-align: center;line-height: 60rpx;font-weight: bold;position: relative;clip-path: polygon(16rpx 0, 252rpx 0%, 100% 50%, 252rpx 100%, 16rpx 100%, 0 50%);}
+.contItemTit::before,.contItemTit::after{content: '';display: block;width: 10rpx;height: 10rpx;background: #fff;border-radius: 50%;position: absolute;top: 50%;-webkit-transform: translateY(-50%);transform: translateY(-50%);}
+.contItemTit::before{left: 20rpx;}
+.contItemTit::after{right: 20rpx;}
+
+/* 奖励发放 */
+.rewardDistribution{font-size: 28rpx;text-align: center;margin-top: 50rpx;padding: 30rpx 0;}
+.rewardImgIco{width: 90rpx;margin-bottom: 16rpx;}
+
+/* 奖励 */
+.giftPackageBox{margin: 50rpx 0;white-space: nowrap;-webkit-overflow-scrolling: touch;}
+.giftPackageBox ::-webkit-scrollbar{display: none;width: 0;height: 0;color: transparent;}
+.giftItem{display: inline-block;width: 200rpx;text-align: center;}
+.giftItem:not(:last-child){margin-right: 30rpx;}
+.giftTopBox{background: #fff;color: #ed5b42;padding-top:6rpx;position: relative;-webkit-clip-path: ellipse(86% 100% at 50% 0%);clip-path: ellipse(86% 98% at 50% 0%);}
+.giftTopBox::after{content: '';display: block;width: 100%;position: absolute;top: 30rpx;bottom: 0;background: #e92d2d;border-radius: 20rpx 20rpx 0 0;}
+.giftNumBox{width: 148rpx;background: #fef1e0;border: 1px solid #e9c29f;border-radius: 6rpx;
+box-shadow: 0 0 0 6rpx #fef1e0,0 44rpx 1rpx 14rpx rgba(0, 0, 0, 0.07);padding: 16rpx 0 10rpx;margin: auto;line-height: 1;position: relative;z-index: 1;}
+.giftItemNum{font-size: 40rpx;font-weight: bold;margin-bottom: 10rpx;}
+.giftItemText{font-size: 24rpx;font-weight: normal;}
+.giftItemInfo{color: #fedc8a;font-size: 24rpx;padding-bottom: 16rpx;background: #fc5151;border-radius: 0 0 6rpx 6rpx;padding-top: 24rpx;margin-top: -24rpx;}
+.giftTextIco{width: 30rpx;height: 30rpx;vertical-align: top;margin-top: 10rpx;}
+
+/* 任务描述 */
+.contDetailBox{margin-top: 30px;}
+.contDetailBox image{width: 100%;}
+
+/* 审核按钮 */
+.reviewBtnBox{height: 92rpx;}
+.reviewBtn,.reviewBtnIng,.notStarted{position: fixed;bottom: 0;left: 0;right: 0;color: #fff;border-radius: 0;font-size: 32rpx;font-weight: bold;line-height: 92rpx;}
+.reviewBtn{background: #fd9f19;}
+.reviewBtn.button-hover{background: #fda62b;}
+.reviewBtnBox button::after{display: none;}
+.reviewBtnIng{background: #fedaa7;}
+.notStarted{background: #c2c2c2;}
+
+/* 审核弹窗 */
+.reviewPop{z-index: 1;}
+.reviewPopCont{position: absolute;bottom: 0;left: 0;right: 0;background: #fff;border-radius: 12rpx 12rpx 0 0;z-index: 1;padding: 70rpx 50rpx;overflow: hidden;animation: fadeIn .3s linear forwards;}
+.reviewPopClose{position: absolute;top: 0;right: 0;line-height: 1;padding: 30rpx;color: #999;font-size: 36rpx;}
+.reviewPopClose.hover{background: #f2f2f2;}
+.reviewPopBtn{background: #fd9f19;width: 500rpx;line-height: 80rpx;border-radius: 6rpx;color: #fff;font-size: 32rpx;margin-top: 50rpx;}
+.reviewPopBtn.button-hover{background: #fda62b;}
+.reviewPopBtn::after{display: none;}
+.reviewPopTipNum{color: #fd5136;font-size: 32rpx;font-weight: bold;}
+
+.reviewPopImgBox{width: 256rpx;height: 256rpx;border-radius: 6rpx;overflow: hidden;margin: 0 auto;position: relative;}
+.reviewPopImgBox .reviewPopImg{width: 100%;height: 100%;}
+.reviewPopAdd{width: 100%;height: 100%;position: absolute;top: 0;left: 0;display: flex;display: -webkit-flex;align-items: center;justify-content: center;font-size: 28rpx;color: #999;text-align: center;}
+.reviewAddIco{width: 60rpx;}
+
+@keyframes fadeIn{
+  0%{transform: translateY(100%);}
+  100%{transform: translateY(0%);}
+}

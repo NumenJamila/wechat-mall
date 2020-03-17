@@ -1,0 +1,79 @@
+<!--pages/plug-in/collection/index/index.wxml-->
+
+<view class="pageBox" style='background-color:{{taskData.bj_color}}'>
+  <image class="topBanner" src="{{taskData.hb_pic}}" mode="widthFix"></image>
+  <view class="collectionCont">
+    <view class="activeTime">活动时间：{{taskData.start_time}}至{{taskData.end_time}}</view>
+    <view class="contItemBox">
+      <view class="contItemTit">任务奖励</view>
+      <block wx:if="{{taskData.is_u_task==2}}">
+        <view class="rewardDistribution">
+          <image class="rewardImgIco" src="http://www.ixiaochengxu.cc/resource/images/plug-in/collection/ico_gift.png" mode="widthFix"></image>
+          <view>奖励已发放至你的账户</view>
+        </view>
+      </block>
+      <scroll-view class="giftPackageBox" scroll-x="true">
+        <view class="giftItem" wx:if="{{taskData.is_reward_jf==1}}">
+          <view class="giftTopBox">
+            <view class="giftNumBox">
+              <view class="giftItemNum">{{taskData.re_jf_num}}</view>
+              <view class="giftItemText">积分</view>
+            </view>
+          </view>
+          <view class="giftItemInfo">
+            <image class="giftTextIco" src="http://www.ixiaochengxu.cc/resource/images/plug-in/collection/ico_coin.svg" mode="widthFix"></image>
+            <view class="lineText">可兑换商品</view>
+          </view>
+        </view>
+        <block wx:if="{{taskData.is_reward_yhq==1}}">
+          <view class="giftItem" wx:for="{{taskData.re_yhq}}" wx:key="{{index}}">
+            <view class="giftTopBox">
+              <view class="giftNumBox">
+                <view class="giftItemNum">{{item.yh}}<text class="giftItemText">{{item.type==0?'元':'折'}}</text></view>
+                <view class="giftItemText">优惠券</view>
+              </view>
+            </view>
+            <view class="giftItemInfo">
+              <image class="giftTextIco" src="http://www.ixiaochengxu.cc/resource/images/plug-in/collection/ico_coin.svg" mode="widthFix"></image>
+              <view class="lineText">适用于{{item.module_name}}</view>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+    <view class="contItemBox" wx:if="{{content}}">
+      <view class="contItemTit">任务描述</view>
+      <view class="contDetailBox">
+        <import src="../../../../wxParse/wxParse.wxml" />
+        <template is="wxParse" data="{{wxParseData:content.nodes}}" />
+      </view>
+    </view>
+  </view>
+
+  <view class="floatBox reviewPop" wx:if="{{up_status}}">
+    <view class="floatBox floatBoxBg" style="display:block;" catchtap='toClose'></view>
+    <view class="reviewPopCont">
+      <view class="reviewPopClose iconfont icon-close" hover-class="hover" catchtap='toClose'></view>
+      <view class="tc f14 mb10" wx:if="{{taskData.sy_num>0}}">您还剩余 <text class="reviewPopTipNum">{{taskData.sy_num}}</text> 次提交机会</view>
+      <form bindsubmit="submitPic" report-submit="true">
+        <view class="reviewPopImgBox">
+
+          <image class="reviewPopImg" src="{{this_img==null?'':this_img}}" mode="aspectFill"></image>
+          <view class="reviewPopAdd gridFour" bindtap="chooseimg_bind">
+            <view wx:if="{{this_img==null}}">
+              <image class="reviewAddIco" src="{{this_img==null?'data:image/png;base64,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':''}}" mode="widthFix"></image>
+              <view>点击上传截图</view>
+            </view>
+          </view>
+        </view>
+        <button class="reviewPopBtn" formType="submit">确定并提交</button>
+      </form>
+    </view>
+  </view>
+
+  <view class="reviewBtnBox">
+    <button class="reviewBtn" catchtap='toChageUp' wx:if="{{taskData.is_u_task==0}}">上传审核</button>
+    <button class="reviewBtnIng" catchtap='toChageUp' wx:if="{{taskData.is_u_task==1}}">审核中</button>
+    <button class="notStarted" wx:if="{{taskData.is_begin==0}}">活动未开始</button>
+  </view>
+</view>

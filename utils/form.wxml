@@ -1,0 +1,190 @@
+<!-- form 2.0-->
+
+<template name="form">
+  <view class='form'>
+    <block wx:for='{{data}}' wx:key='{{index}}'>
+      <view class="form-item {{item.type=='date'||item.type=='time'||item.type=='datetime'||item.type=='switch'||item.type=='number'||item.type=='digit'||item.type=='phone'||item.type=='idcard'||item.type=='mylocation'?'flex':''}} {{item.type=='regioninfo'?'regioninfoBox':''}}">
+        <label class="form-tit flex sub {{item.type=='checkbox'?'gridXb formGrid':''}} {{item.type=='radio'&&item.options.col_show!='5'?'gridXb formGrid':''}}" for='{{item.name}}' wx:key="key">
+          <block wx:if='{{item.type=="checkbox"}}'>
+            <text wx:if="{{item.options.required==1}}" class="red">*</text>{{item.title}}<text class="infotwo" >(多选)</text>
+          </block>
+          <block wx:elif='{{item.type=="radio"}}'>
+            <text wx:if="{{item.options.required==1}}" class="red">*</text>{{item.title}}<text class="infotwo" >(单选)</text>
+          </block>
+          <block wx:else >
+            <text wx:if="{{item.options.required==1}}" class="red">*</text>{{item.title}}
+          </block>
+        </label>
+
+        <template is="form-input" wx:if='{{item.type=="string"}}' data='{{control:item}}' />
+        <template is="form-input" wx:if='{{item.type=="number"}}' data='{{control:item}}' />
+        <template is="form-input" wx:if='{{item.type=="idcard"}}' data='{{control:item}}' />
+        <template is="form-input" wx:if='{{item.type=="digit"}}' data='{{control:item}}' />
+        <template is="form-input" wx:if='{{item.type=="phone"}}' data='{{control:item}}' />
+
+        <template is="form-checkbox" wx:if='{{item.type=="checkbox"}}' data='{{control:item}}' />
+        <template is="form-switch" wx:if='{{item.type=="switch"}}' data='{{control:item}}' />
+        <template is="form-radio" wx:if='{{item.type=="radio"}}' data='{{control:item,pickerIndex:pickerIndex}}' />
+        <template is="form-text" wx:if='{{item.type=="text"}}' data='{{control:item}}' />
+        <template is="form-slider" wx:if='{{item.type=="slider"}}' data='{{control:item}}' />
+        <template is="form-datetime" wx:if='{{item.type=="datetime"}}' data='{{control:item}}' />
+        <template is="form-date" wx:if='{{item.type=="date"}}' data='{{control:item}}' />
+        <template is="form-time" wx:if='{{item.type=="time"}}' data='{{control:item}}' />
+        <template is="form-region" wx:if='{{item.type=="region"}}' data='{{control:item}}' />
+        <template is="form-images" wx:if='{{item.type=="images"}}' data='{{control:item}}' />
+
+        <template is="form-regioninfo" wx:if='{{item.type=="regioninfo"}}' data='{{control:item}}' />
+        <template is="form-mylocation" wx:if='{{item.type=="mylocation"}}' data='{{control:item}}' />
+      </view>
+
+    </block>
+  </view>
+</template>
+
+
+<template name="form-input">
+  <view class='form-cot'>
+    <input type='{{control.type}}' id='{{control.name}}' name='{{control.name}}' value='{{control.value}}' catchblur='onFormBlur' placeholder='{{control.options.tip}}' placeholder-class="placeholderClass" />
+  </view>
+</template>
+<!-- wx:if='{{control.options.col_show == 2 }}' -->
+<template name="form-checkbox">
+  <view class="form-cot form-tex-choose form-choose-col{{control.options.col_show}}">
+    <checkbox-group catchchange='onFormCheckboxChange' id='{{control.name}}'>
+      <label class='form-choose' wx:for='{{control.options.items}}' wx:key='{{index}}'>
+        <checkbox checked='{{item.checked}}' value='{{item.value}}'></checkbox>
+        <view class='choose-img' wx:if='{{control.options.imgs[index]}}'>
+          <image src='{{control.options.imgs[index]}}' mode='aspectFill' catchtap='onFormPrevImage' data-src='{{control.options.imgs[index]}}'></image>
+        </view>
+        <view class='choose-text'>{{item.value}}</view>
+      </label>
+    </checkbox-group>
+  </view>
+</template>
+
+<template name="form-radio">
+  <block wx:if="{{control.options.col_show==5}}">
+    <view class="section">
+      <picker bindchange="onFormRadioPickerChange" value="{{pickerIndex}}" id='{{control.name}}' range="{{control.options.items}}" data-refresh='1'>
+        <view class="gridFour drop-down flex">
+          <text class="sub">{{control.value||"请选择"}}</text>
+          <text class="select-item"></text>
+        </view>
+      </picker>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="form-cot form-tex-choose form-choose-col{{control.options.col_show}} ">
+      <radio-group catchchange='onFormRadioChange' id='{{control.name}}'>
+        <label class='form-choose form-choose-inline' wx:for='{{control.options.items}}' wx:key='{{index}}'>
+          <radio checked='{{control.value==item}}' value='{{item}}'></radio>
+          <view class='choose-img' wx:if='{{control.options.imgs[index]}}'>
+            <image src='{{control.options.imgs[index]}}' mode='aspectFill' catchtap='onFormPrevImage' data-src='{{control.options.imgs[index]}}'></image>
+          </view>
+          <view class='choose-text'>{{item}}</view>
+        </label>
+      </radio-group>
+    </view>
+  </block>
+</template>
+
+<template name="form-switch">
+  <view class='form-cot form-switch'>
+    <view>{{control.options.tip}}</view>
+    <switch id='{{control.name}}' catchchange="onFormSwitchChange" checked='{{control.value}}' value='1' />
+  </view>
+</template>
+
+<template name="form-text">
+  <view class='form-cot'>
+    <textarea id='{{control.name}}' placeholder='{{control.options.tip}}' name='{{control.name}}' value='{{control.value}}' catchblur='onFormBlur' class='form-tear' maxlength='-1'></textarea>
+  </view>
+</template>
+
+<template name="form-slider">
+  <view class='form-cot'>
+    <slider id='{{control.name}}' value='{{control.value}}' catchchange="onFormSliderChange" min='{{control.options.min||0}}' max='{{control.options.max||100}}' step='{{control.options.step||1}}' show-value='{{control.options.showValue}}' activeColor='{{control.options.activeColor}}' backgroundColor='{{control.options.backgroundColor}}' />
+  </view>
+</template>
+
+<template name="form-datetime">
+  <view class='form-cot'>
+    <view class="flex">
+      <view class="time-item">
+        <picker id='{{control.name}}' mode="date" value='{{control.value[0]}}' catchchange="onFormDateChange" data-refresh='1' data-type='date'>
+          {{control.value[0]||"选择日期"}}
+        </picker>
+      </view>
+      <view class="time-item">
+        <picker id='{{control.name}}' mode="time" value='{{control.value[1]}}' catchchange="onFormDateChange" data-refresh='1' data-type='time'>
+          {{control.value[1]||"选择时间"}}
+        </picker>
+      </view>
+    </view>
+  </view>
+</template>
+
+<template name="form-date">
+  <view class='form-cot'>
+    <picker id='{{control.name}}' mode="date" value='{{control.value}}' catchchange="onFormDateChange" data-refresh='1'>
+      {{control.value||"请选择"}}<text class="iconfont icon-youjiantou" ></text>
+    </picker>
+  </view>
+</template>
+
+<template name="form-time">
+  <view class='form-cot'>
+    <picker id='{{control.name}}' mode="time" value='{{control.value}}' catchchange="onFormDateChange" data-refresh='1'>
+      {{control.value||"请选择"}}<text class="iconfont icon-youjiantou" ></text>
+    </picker>
+  </view>
+</template>
+
+<template name="form-region">
+  <view class='form-cot'>
+    <picker id='{{control.name}}' mode="region" value='{{control.value||[]}}' catchchange="onFormRegionChange" data-refresh='1'>
+      {{control.value||"请选择"}}
+    </picker>
+  </view>
+</template>
+
+<template name="form-images">
+  <view class='form-cot'>
+    <view class='form-add-img' wx:for='{{control.value}}' wx:key='{{index}}'>
+      <image src='{{item}}' mode='aspectFill' catchtap='onFormPreviewImageTap' data-name='{{control.name}}' data-index='{{index}}'></image>
+      <text class='close-img' catchtap='onFormRemoveImageTap' data-name='{{control.name}}' data-index='{{index}}'></text>
+      <text class=' add-img-fail' wx:if="{{!control.state[index]}}">上传失败</text>
+    </view>
+    <view class='form-add-img' id='{{control.name}}' catchtap='onFormChooseImageTap' wx:if='{{control.value.length<control.options.count}}'>
+      <text class='add-btn'></text>
+    </view>
+  </view>
+</template>
+
+
+<template name="form-regioninfo">
+  <view class='form-regioninfoBox'>
+    <view class="regioninfoCont">
+      <text wx:if="{{control.options.required==1}}" class="red">*</text><text class="dzTitle">{{control.title}}</text>
+      <picker class="myRegioninfo" id='{{control.name}}' mode="region" value='{{control.value.region||[]}}' catchchange="onFormRegionChangeRegionInfo" data-refresh='1' data-type='region'>
+        <view class="placeholderClass2" wx:if="{{control.value.region}}">{{control.value.region}}</view>
+        <view class="placeholderClass2" wx:if="{{!control.value.region}}">请选择省市区</view>
+      </picker>
+    </view>
+    <view class='gridXt regioninfoCont flex'>
+      <text class="dzTitle">详细地址</text>
+      <input class="sub" id='{{control.name}}' placeholder='{{control.options.tip}}' name='{{control.name}}' value='{{control.value.info}}' catchblur='onFormBlurRegionInfo' data-type='info' maxlength='-1' placeholder-class="placeholderClass"></input>
+    </view>
+  </view>
+</template>
+
+
+<template name="form-mylocation">
+  <view class='form-cot'>
+    <view class='flex mylocation' id='{{control.name}}' catchtap='onFormChooseLocation' data-refresh='1'>
+      <text class="sub lineText" wx:if="{{control.value}}">{{control.value}}</text>
+      <text class="sub lineText placeholderClass" wx:if="{{!control.value}}">选择地址</text>
+      <text class="iconfont icon-youjiantou" ></text>
+    </view>
+  </view>
+</template>

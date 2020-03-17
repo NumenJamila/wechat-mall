@@ -1,0 +1,12 @@
+/* pages/plug-in/components/collect/index.wxss */
+/* @import "/pages/chain-store/common.wxss"; */
+/* 收藏提示 */
+.pageCollectTips{position: fixed;right: 20rpx;top: 10rpx;width: 430rpx;padding: 16rpx 12rpx;color: #333;font-size: 24rpx;line-height: 1.4;background: #fff;border-radius: 6rpx;box-shadow: 0 4rpx 16rpx rgba(102, 102, 102, .3);z-index: 10;display: flex;display: -webkit-flex;}
+.pageCollectTips::before{content: '';display: block;border-bottom: 16rpx solid #fff;border-left: 14rpx solid transparent;border-right: 14rpx solid transparent;position: absolute;right: 64px;top: -10rpx;}
+.collectTipImg{width: 30rpx;height: 28rpx;vertical-align: 0;}
+.collectTipText{flex: 1;overflow: hidden;}
+.collectTipClose{color: #999;width: 40rpx;height: 40rpx;position: relative;}
+.collectTipClose.hover{background: #f2f2f2;}
+.collectTipClose::before,.collectTipClose::after{content: '';display: block;width: 60%;height: 1px;background: currentColor;position: absolute;top: 50%;left:50%;transform: translate(-50%,-50%);}
+.collectTipClose::before{transform: translate(-50%,-50%) rotate(45deg);}
+.collectTipClose::after{transform: translate(-50%,-50%) rotate(-45deg);}

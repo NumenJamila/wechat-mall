@@ -1,0 +1,65 @@
+<!--支付成功页面-->
+
+<view class="page msg_success ">
+  <view class="topStateBox">
+    <!-- 支付状态 -->
+    <view class="flex payStateBox">
+      <image class="payStateIco" src="http://static.ixiaochengxu.cc/mofang/images/shop/pay/success.png" mode="aspectFit"></image>
+      <view class="payStateInfo">
+        <view class="payStateTit mainColor">支付成功!</view>
+        <view class="payStateMsg">支付金额：<text class="payPrice">￥</text><text class="payPrice payPriceNum">{{order_info.order_amount}}</text></view>
+        <view class="payStateMsg">付款方式：<text class="payStyle">{{is_yue_str}}</text></view>
+      </view>
+    </view>
+    <!-- 优惠券和积分 -->
+    <view class="flex couponSendBox">
+      <view class="sub flex couponSend" wx:if="{{pay_and_send_gift_info.is_pay && pay_and_send_gift_info.config.is_open == 1 && pay_and_send_gift_info.send_type > 0}}">
+        <view class="sub">
+          <view class="lineText">{{pay_and_send_gift_info.config.send_days}}天vip+迷你券</view>
+          <view class="couponSendTips lineText">持券享全场VIP+内部特惠价</view>
+        </view>
+        <button class="couponSendBtn disabled" wx:if="{{pay_and_send_gift_info.send_type == 1}}">已领取</button>
+        <button class="couponSendBtn" wx:if="{{pay_and_send_gift_info.send_type == 2}}" open-type='getPhoneNumber' bindgetphonenumber='onGetPhoneNumber'>领取</button>
+      </view>
+      <view class="sub flex couponSend" wx:if="{{score>0}}">
+        <view class="sub">
+          <view class="lineText">{{score}}积分</view>
+          <view class="couponSendTips lineText">确认收货后自动到账</view>
+        </view>
+        <text class="couponJifenIco iconfont icon-jifen"></text>
+      </view>
+    </view>
+  </view>
+  <!-- 其他更多信息 -->
+  <view class="otherListBox">
+    <view class="otherList" wx:for="{{gift_configs}}" wx:for-index="index" wx:for-item="item">
+      <view class="otherListCont flex">
+        <image class="otherListIco" src="http://static.ixiaochengxu.cc/mofang/images/shop/pay/coupon.svg" wx-if="{{item.type=='coupon'}}"></image>
+        <image class="otherListIco" src="http://static.ixiaochengxu.cc/mofang/images/shop/pay/gift.svg" wx-if="{{item.type=='cash'}}"></image>
+        <image class="otherListIco" src="http://static.ixiaochengxu.cc/mofang/images/shop/pay/money.svg" wx-if="{{item.type=='gift'}}"></image>
+        <view class="sub">
+          <view>
+            <text>{{item.str1}}</text>
+            <text class="otherLightText">{{item.str2}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="otherListTips" wx:if="{{item.type == 'cash' && card_info.status == 0 }}">
+        <text>您还不是会员,</text>
+        <button class="openMemberBtn"  data-name='card' data-value='{"show":true}' data-is-multi='true' open-type='getPhoneNumber' bindgetphonenumber='onGetPhoneNumber1'>立即开通<text class="iconfont icon-youjiantou"></text></button>
+      </view>
+      <view class="otherListTips flex" wx:elif="{{item.str3}}">
+        <view class="sub">{{item.str3}}</view>
+        <button class="otherListTipBtn" open-type='share' data-gift='gift' wx:if="{{item.need_share}}">立即分享</button>
+      </view>
+    </view>
+  </view>
+  <!-- 按钮 -->
+  <view class="orderBtnBox flex">
+    <!-- <button bindtap='gohome' class="weui-btn weui-btn_primary">返回首页</button> -->
+    <!-- <button type="primary" bindtap='goOrder' class="weui-btn weui-btn_primary">查看订单</button> -->
+    <button bindtap='goOrder' class="orderBtnItem sub">查看订单</button>
+    <button open-type='share' class="orderBtnItem sub" wx:if="{{pay_and_send_gift_info.config.is_accept_order_notify == 1}}">提醒商家接单</button>
+  </view>
+  <button bindtap='gohome' class="returnHomeBtn">前往首页</button>
+</view>

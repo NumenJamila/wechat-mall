@@ -1,0 +1,6 @@
+<!--pages/plug-in/components/collect/index.wxml-->
+<!-- 收藏提示 -->
+<view class="pageCollectTips" wx:if="{{collect_status==1 && !is_collect}}">
+  <view class="collectTipText">点击“ <image class="collectTipImg" src="http://www.ixiaochengxu.cc/resource/images/common/ico_more.png" mode="widthFix"></image> ”{{collect_msg}}</view>
+  <view class="collectTipClose" hover-class='hover' bindtap='closeCollect'></view>
+</view>

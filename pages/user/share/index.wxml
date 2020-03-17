@@ -1,0 +1,133 @@
+<!--pages/user/share/index.wxml-->
+<!-- canvas海报 -->
+<view class="canvas">
+  <block wx:if="{{loadhide}}">
+    <view class='load tc' wx:if='{{loadhide}}'>
+      <text class='loading-icon'></text> 正在生成中...
+    </view>
+  </block>
+  <block wx:else>
+    <!-- 签到 -->
+    <view class="signBox" wx:if="{{is_show_sign}}">
+      <view class="signRules" catchtap="signRules">?</view>
+      <image class="signBg" src="http://www.ixiaochengxu.cc/resource/images/plug-in/signIn/signBg.png" mode="aspectFill"></image>
+      <view class="signTop">
+        <!-- 签到提醒 -->
+        <view class="title">
+          <view class="cont">连续签到<text class="red">{{continue_days}}</text>天</view>
+          <view class="remind">签到提醒
+            <switch color="#FE3043" checked="{{sign_remind == 1 ? true :false}}" bindchange="signRemind" />
+          </view>
+        </view>
+        <!-- 星期 -->
+        <view class="week">
+          <view class="flex">
+            <view wx:for="{{week_date}}" wx:key="{{idnex}}"  class="{{item.str=='已签到' ? 'have' : item.str=='已过期' ? 'not' : ''}}">{{item.str=='已签到' ? '✓' : item.str=='已过期' ? 'X' : index}}</view>
+          </view>
+          <progress percent="{{week}}" backgroundColor="#f8f8f8" activeColor="#FFE2E5"></progress>
+        </view>
+        <!--  -->
+        <view class="continuous" wx:if="{{sign_config.continue_reward_days_str!=''}}">
+          <view class="continuousText">连续签到{{sign_config.continue_reward_days_str}}天可得到更多惊喜礼物</view>
+        </view>
+      </view>
+      <form report-submit="true" bindsubmit="userSign">
+        <view class="rewardBox">  
+          <view class="rewardHave" wx:for="{{week_date}}" wx:key="{{index}}"  >
+            <text class="{{item.can_sign == true || item.str == '已签到' || item.str == '已过期'? 'red' : 'NotTime'}}" >第{{index}}天</text>
+              <image src="{{item.str == '已签到' ? 'http://www.ixiaochengxu.cc/resource/images/plug-in/signIn/redHave.png' : 'http://www.ixiaochengxu.cc/resource/images/plug-in/signIn/redNot.png'}}" mode="aspectFill"   ></image>
+            <text class="{{item.str=='已签到' ? 'Have':'Not'}}">{{item.str}}</text>
+          </view>
+        </view>
+
+        <view class="signBtn">
+          <block wx:if="{{day_is_sign==false}}">
+            <button  class="signAlready">已经签到{{continue_days}}天</button>
+          </block>
+          <block wx:else>
+            <button catchtap="userSign" >签到</button>
+          </block>
+          <button class="clickHb" catchtap='getShareInfo' wx:if="{{is_show_baibao_button}}" >点击生成每日海报</button>
+        </view>
+      </form>
+    </view>
+
+    <block wx:if="{{is_show_haibao}}"   >
+      <view wx:if="{{sharinfo.share_give_score>0}}" class="canvasShare">分享获得<text>{{sharinfo.share_give_score}}</text>积分</view>
+      <canvas canvas-id='my-canvas' id='my-canvas' style="height:{{height}}rpx" hidden="{{can_is_hidden}}"></canvas>
+      <image hidden="{{!is_show_sign}}" src="{{imgurl}}" mode="aspectFill" style="height:{{height}}rpx;width:100%"></image>
+      <view class="canvasBtn flex">
+        <button class="share" hover-class="hoverBtn" open-type='share' >分享小程序</button>
+        <button bindtap='canvas' class="save" hover-class="hoverBtn" catchtap="savePic">保存海报</button>
+      </view>
+    </block>
+    
+
+      <!-- 回到首页 -->
+    <view class="navigatorIndex" hover-class="hoverBtn" catchtap="goIndex" wx:if="{{is_show_sign}}">
+      <text class="iconfont icon-homefill navigatorHome"></text>
+      <view class="navigatorText">首页</view>
+    </view>
+
+
+  </block>
+
+<!-- 签到成功弹出框 -->
+<view class="tckBox" wx:if="{{sign_success_model}}">
+  <view class="tckCont">
+    <view class="signSuccess">
+      <image class="signBg" src="http://www.ixiaochengxu.cc/resource/images/plug-in/signIn/signSuccess.png" mode="aspectFill"></image>
+      <view class="title">签到成功</view>
+      <view class="addIntegral">
+        <text>+{{sign_config.reward}}</text>积分</view>
+      <view class="tckText">积分已存入账户，
+        <text catchtap="onNavigateTo" data-url="/pages/integral/integral-mall/index">去兑换</text>
+      </view>
+    </view>
+  </view>
+  <view class="tckBg" catchtouchmove='true' bindtap="signSuccessModel"></view>
+</view>
+<!-- 获得优惠券弹出框 -->
+<view class="tckBox" wx:if="{{sign_continue_model}}">
+  <view class="tckCont">
+    <view class="obtainCoupons" wx:if="{{continue_reward.continue_reward_type==0}}">
+      <view class="title">恭喜获得优惠券</view>
+      <view class="coupons flex">
+          <block wx:if="{{continue_reward.coupon_info.type==0}}">
+            <view class="moneys"><text>{{continue_reward.coupon_info.yh}}</text>元</view>
+          </block>
+          <block wx:else >
+            <view class="moneys"><text>{{continue_reward.coupon_info.yh}}</text>折</view>
+          </block>
+        <view class="text">优惠券</view>
+      </view>
+      <view class="tckText">优惠券已放入卡包，
+        <text catchtap="onNavigateTo" data-url="/pages/user/mcard/coupon">去使用</text>
+      </view>
+    </view>
+    <view class="signSuccess signContinuous" wx:else>
+      <view class="title titleContinuous gridXt">连续签到{{continue_reward.continue_reward_days}}天！</view>
+      <view class="addIntegral">
+        <text>+{{continue_reward.continue_reward_integral}}</text>积分</view>
+    </view>
+  </view>
+  <view class="tckBg" catchtouchmove='true'></view>
+</view>
+
+
+<!-- 签到规则 -->
+<view class="tckBox" wx:if="{{signRules}}">
+  <view class="tckCont">
+    <view class="tckRules">
+      <view class="title">签到规则</view>
+      <view class="rulesText">
+        <!-- 这是签到的规则内容，这是签到的规则内容，这是签到的规则内容 -->
+        <import src="../../../wxParse/wxParse.wxml"/>
+        <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
+      </view>
+    </view>
+  </view>
+  <view class="tckBg" catchtouchmove='true' catchtap="signRules" ></view>
+</view>
+
+</view>

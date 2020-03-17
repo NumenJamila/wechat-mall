@@ -1,0 +1,57 @@
+<!--pages/integral-goods/index.wxml-->
+<!-- 商品img -->
+<view class="integral-goods-img" wx:if="{{goods_type==0}}">
+  <swiper class='swiper-goods-img' data-urls='{{gallery}}' catchtap='onPreviewTap'>
+    <swiper-item wx:for='{{gallery}}' wx:key='{{index}}'>
+      <image src="{{item}}" mode="aspectFill" data-index='{{index}}'></image>
+    </swiper-item>
+  </swiper>
+</view>
+<!-- 优惠券img, -->
+<view class="couponsImg" wx:elif="{{goods_type==1}}">
+  <image src="http://www.ixiaochengxu.cc/resource/images/user/pointsMall/conponsBgimg.png" mode="aspectFill"></image>
+  <view class="cont">
+    <view class="top">
+      <text class="symbol">￥</text>
+      <text class="moneys">{{coupon_info.yh}}</text>
+      <text class="coupons">优惠券</text>
+    </view>
+    <view class="conditions">
+      <text>满{{coupon_info.full_available}}可用</text>
+    </view>
+  </view>
+</view>
+
+<view class="goods-msg">
+  <view class="goods-name">{{title}}</view>
+  <view class="f14 red integral-num flex">
+    <view class="sub">
+      <text class="moneys">{{sale_price}}</text>
+      <text class="text">积分</text>
+      <text class="delLine">市场价：￥{{market_price}}</text>
+    </view>
+    <view class="useRestrictions gridFour" wx:if="{{goods_type==1}}">仅限{{tags_str}}使用</view>
+  </view>
+  <view class="postageTime flex">
+    <view class="postage">邮费：￥{{shipping_fee}}</view>
+    <view class="numbers">{{stock_str}}</view>
+    <view class="time">截止时间：
+      <block wx:if='{{is_end_time}}'>已结束</block>
+      <block wx:else>{{end_time_text}}</block>
+    </view>
+  </view>
+</view>
+
+<view class="mt10 exchange-note">
+  <view class="exchange-note-tit">商品简介</view>
+  <view class="wxParse">
+    <import src="../../../wxParse/wxParse.wxml" />
+    <template is="wxParse" data="{{wxParseData:content.nodes}}" />
+  </view>
+</view>
+
+<view class="fiexd-box">
+  <view class="integral-bottom">
+    <button class="integral-btn" form-type='submit' disabled='{{!hasExchange}}' bindtap="navigatorGo" data-id="{{id}}">马上兑换</button>
+  </view>
+</view>

@@ -1,0 +1,69 @@
+/* pages/integral-goods/index.wxss */
+@import "../integralFont.wxss";
+@import "../../../wxParse/wxParse.wxss";
+.iconfont{font-size: inherit;}
+page{font-size: 32rpx;}
+.red{color: #ee4a4a;}
+
+.integral-goods-img{width: 100%;padding-top: 50%;position: relative;}
+.integral-goods-img .swiper-goods-img{width: 100%;height: 100%;position: absolute;top: 0;left: 0;}
+.integral-goods-img image{width: 100%;height: 100%;}
+.goods-msg{background: #fff;padding:0 30rpx;}
+.goods-name{font-size: 32rpx;font-weight: bold;padding: 20rpx 0;}
+.integral-num{line-height: 1;color: #FE3043;padding-bottom: 30rpx;align-items: center;}
+.integral-num .moneys{font-size: 32rpx;font-weight: bold;}
+.integral-num .text{font-size: 24rpx;}
+.integral-num .delLine{font-size: 24rpx;color: #999;padding-left: 33rpx;}
+.postageTime{line-height: 1;font-size: 22rpx;color: #999;padding-bottom: 34rpx;}
+.postageTime .postage{width: 166rpx;position: relative;}
+.postageTime .numbers{width: 224rpx;text-align: center;position: relative;}
+.postageTime .postage::after{content: '';position: absolute;right: 1rpx;height: 25rpx;background: #E5E5E5;width: 1rpx;}
+.postageTime .numbers::after{content: '';position: absolute;right: 1rpx;height: 25rpx;background: #E5E5E5;width: 1rpx;}
+.postageTime .time{text-align: right;width: 276rpx;}
+
+
+.exchange-time{padding: 20rpx 30rpx;background: #fbfbfb;color: #666;font-size: 28rpx;}
+.exchange-note{background: #fff;padding: 30rpx;}
+.exchange-note-tit{color: #333333;font-weight: bold;font-size: 28rpx;}
+.exchange-note image{max-width: 100%!important;}
+.exchange-note view{white-space:pre-wrap;max-width: 100%!important;}
+
+
+.fiexd-box{height: 92rpx;}
+.integral-bottom{position: fixed;bottom: 0;left: 0;right: 0;}
+.integral-bottom button{border-radius: 0;}
+.integral-bottom button::after{border: none;}
+.integral-btn{background: #ebc35c;color: #fff;}
+.integral-btn:active{background:#e2bb55;}
+.redeem-code{background: #666;color: #fff;}
+
+
+.integral-pop{z-index: 10;}
+.integral-pop .floatBoxBg{display: block;}
+.integral-cont{background: #fff;width: 500rpx; border-radius: 10rpx;overflow: hidden;z-index: 1;}
+.integral-cont-tit{padding: 40rpx 30rpx 20rpx;text-align: center;font-weight: 700;}
+.integral-cont button{border-radius: 0;line-height: 86rpx;height: 86rpx;font-size: 32rpx;}
+.integral-cont button::after{border: none;}
+.cancel-btn{background: #fafafa;}
+.cancel-btn:active{background: #f8f8f8;}
+.confirm-btn{background: #ebc35c;color: #fff;}
+.confirm-btn:active{background:#e2bb55;}
+.selTel{padding:20rpx 30rpx;background-color: rgba(245, 245, 245, 1)}
+.cell{padding: 0 30rpx;margin-bottom: 20rpx;}
+
+.couponsImg{width: 100%;height: 336rpx;position: relative; background-image: -moz-linear-gradient( -35deg, rgb(254,170,115) 0%, rgb(254,89,62) 100%);
+  background-image: -webkit-linear-gradient( -35deg, rgb(254,170,115) 0%, rgb(254,89,62) 100%);
+  background-image: -ms-linear-gradient( -35deg, rgb(254,170,115) 0%, rgb(254,89,62) 100%);display: flex;align-items: center;justify-content: center;}
+.couponsImg image{width: 200rpx;height: 234rpx;position: absolute;right: 0;bottom: -52rpx;z-index: 0;}
+.couponsImg .top{line-height: 1;}
+.couponsImg .cont{position: relative;z-index: 2;color: white;}
+.couponsImg .symbol{font-size: 48rpx;margin-right: 15rpx;}
+.couponsImg .moneys{font-size: 130rpx;}
+.couponsImg .coupons{font-size: 28rpx;width: 28rpx;display: inline-block;line-height: 1;margin-left: 15rpx;}
+.conditions{text-align: center;margin-top: 40rpx;font-size: 24rpx;}
+.conditions text{display: inline-block;padding: 8rpx 22rpx;border-radius: 20rpx;border: 1px solid rgba(255,255,255,0.5);line-height: 1;position: relative;}
+.conditions text::after{content: '';position: absolute;width: 120rpx;height: 1rpx;background: rgba(255,255,255,0.5);left: -121rpx;top: 20rpx;}
+.conditions text::before{content: '';position: absolute;width: 120rpx;height: 1rpx;background: rgba(255,255,255,0.5);right: -121rpx;top: 20rpx;}
+
+.useRestrictions{font-size: 24rpx;color:#ebc35c;line-height: 1.6;padding: 0 10rpx;max-width: 400rpx;}
+.useRestrictions::before{border-color:#ebc35c;border-radius: 8rpx;}

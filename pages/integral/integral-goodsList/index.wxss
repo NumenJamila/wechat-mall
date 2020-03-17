@@ -1,0 +1,28 @@
+/* pages/integral/integral-goodsList/index.wxss */
+page{font-size: 32rpx;}
+image{width: 100%;height: 100%;}
+.integral-mall-tit{padding: 30rpx;line-height: 1.2;align-items: flex-end;}
+.integral-mall-tit .more{font-size: 24rpx;color: #999;}
+.mall-item{padding: 30rpx;background: #fff;margin-bottom: 30rpx;}
+.mall-item:active{background: #fafafa;}
+.mall-item.gridXb::before{left: 30rpx;}
+.mall-item.gridXb:last-child:before{display: none;}
+.goods-img{width: 192rpx;height: 192rpx;}
+.goods-name{line-height: 1.3;font-size: 30rpx;margin-bottom: 10rpx;}
+.goods-integral{line-height: 1.2}
+.goods-integral .red{color:#ff5050;}
+.exchange-btn{line-height: 54rpx;width: 140rpx;margin: 0;font-size: 28rpx;border-radius: 4rpx;background: #ebc35c;color: #fff;vertical-align: bottom;}
+.exchange-btn::after{border:none;}
+.goods_text{display: flex;flex-direction: column;justify-content: space-between;}
+.goods-desc{line-height: 1.4}
+.couponsImg{background:linear-gradient(-45deg,rgba(254,89,62,1),rgba(254,170,115,1));position: relative;}
+.couponsImg image{position: absolute;left: 0;top: 0;z-index: 0;}
+.couponsImg .cont{position: relative;z-index: 1;color: white;display: flex;flex-direction: column;align-items: center;justify-content: flex-end;height: 100%;padding: 0 13rpx;}
+.couponsImg .couponsPrice{font-size: 24rpx;width: 100%;line-height: 1;padding-bottom: 25rpx;text-align: center;position: relative;}
+.couponsImg .couponsPrice::after{content: '￥';position: absolute;font-size: 24rpx;left: 0rpx;bottom: 30rpx;}
+.couponsImg .couponsPrice text{font-size: 50rpx;}
+.couponsImg .couponsRule{opacity: 0.8;font-size: 22rpx;line-height: 1;padding: 17rpx 0 24rpx 0;}
+/* 使用限制 */
+.restrictionsBox{line-height: 1;}
+.useRestrictions{display: inline-block;font-size: 20rpx;color: #999;line-height: 1.6;padding: 0 10rpx;max-width: 100%;}
+.useRestrictions::before{border-color:#999;border-radius: 8rpx;}

@@ -1,0 +1,100 @@
+<!--pages/user/myCardDetail/myCardDetail.wxml-->
+
+<view class="pageCont">
+  <view class="contItemBox">
+    <!-- 名片信息 -->
+    <view class="businessCard flex gridXb">
+      <image class="cardUserImg" src="{{service_card_info.headimgurl}}" mode="aspectFill"></image>
+      <view class="sub">
+        <view class="cardUserName">
+          <text class="cardUserNametext lineText">{{service_card_info.realname}}</text>
+          <text class="cardUserTag">{{service_card_info.tags}}</text>
+        </view>
+        <view class="cardCompany">{{service_card_info.company_name}}</view>
+      </view>
+    </view>
+    <!-- 操作 -->
+    <view class="flex operatingBox">
+      <view class="sub operatingItem" bindtap='goHome'>
+        <text class="iconfont icon-shouye"></text>
+        <view>前去首页</view>
+      </view>
+      <!--<button class="sub operatingItem" open-type='share'>-->
+        <!--<text class="iconfont icon-fenxiang"></text>-->
+        <!--<view>分享名片</view>-->
+      <!--</button>-->
+      <!--<button wx:if="{{service_card_info.uid != userInfo.uid}}" class="sub operatingItem" open-type='getPhoneNumber' bindgetphonenumber='onGetPhoneNumber'>-->
+        <!--<text class="iconfont icon-mingpian"></text>-->
+        <!--<view>保存名片</view>-->
+      <!--</button>-->
+      <!--<form wx:if="{{service_card_info.uid == userInfo.uid}}" class='sub' report-submit="true" catchsubmit="pushFormId">-->
+        <!--<button class="operatingItem" formType="submit">-->
+          <!--<text class='operatingNum'>{{form_id_num}}</text>-->
+          <!--<view>活跃值</view>-->
+        <!--</button>-->
+      <!--</form>-->
+    </view>
+  </view>
+  <!-- 我的客户 -->
+  <view class="contItemBox" wx:if="{{service_card_info.uid == userInfo.uid}}">
+    <view class="flex cardInfoItem gridXb" catchtap="linkToTap">
+      <view class="sub">我的客户</view>
+      <view class="cardInfoMore">
+        <text class="iconfont icon-youjiantou"></text>
+      </view>
+    </view>
+  </view>
+  <view class="contItemBox">
+    <view class="flex cardInfoItem gridXb">
+      <view class="cardInfoTit">手机号:</view>
+      <view class="sub">{{service_card_info.mobile}}</view>
+      <view class="cardInfoIco" bindtap='call' hover-class="hover">
+        <text class="iconfont icon-tel02"></text>
+      </view>
+    </view>
+    <view class="flex cardInfoItem gridXb">
+      <view class="cardInfoTit">微信号:</view>
+      <view class="sub">{{service_card_info.wx_number}}</view>
+      <view class="cardInfoCopy" hover-class="hover" catchtap="copyTextTap" data-text="{{service_card_info.wx_number}}">复制</view>
+    </view>
+    <view class="flex cardInfoItem gridXb">
+      <view class="cardInfoTit">公司名:</view>
+      <view class="sub">{{service_card_info.company_name}}</view>
+      <view class="cardInfoCopy" hover-class="hover" catchtap="copyTextTap" data-text="{{service_card_info.company_name}}">复制</view>
+    </view>
+    <view class="flex cardInfoItem gridXb">
+      <view class="cardInfoTit">公司地址:</view>
+      <view class="sub">{{service_card_info.company_address}}</view>
+      <view class="cardInfoIco" catchtap="openMap" hover-class="hover">
+        <text class="iconfont icon-huodong"></text>
+      </view>
+    </view>
+  </view>
+
+  <view class="contItemBox">
+    <import src="../../../../wxParse/wxParse.wxml" />
+    <view class="myCardDetailCont">
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
+  </view>
+</view>
+
+<!-- <view class="asideFloatBox" wx:if="{{service_card_info.uid == userInfo.uid}}">
+  <view class="asideFloatBtn" catchtap="linkToAi">AI轨迹</view>
+</view> -->
+
+<!-- 弹窗 -->
+<modal confirm-text="确定" cancel-text="取消" bindcancel="cancel" bindconfirm="keepMobile" bindcancel="showKeep" wx:if="{{show_keep}}">
+  <view class="cardDetailPop">
+    <text> 确认保存当前名片手机，方便联系</text>
+  </view>
+</modal>
+
+  <!--开通会员2.0版本  -->
+  <view class='popupBox' wx:if="{{authorize}}">
+    <view class='shade_bg' catchtap='closeAuthorize'></view>
+    <view class='modal'>
+      <view class='modTit'>授权信息</view>
+      <button class='ktBtn' open-type='getPhoneNumber' bindgetphonenumber='onGetPhoneNumber'>授权微信手机极速开通</button>
+    </view>
+  </view>

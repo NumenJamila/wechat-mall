@@ -1,0 +1,135 @@
+<!--pages/Live/index/index.wxml-->
+
+<!-- 图片封面 5:3 建议尺寸 750*450 -->
+<!-- 轮播图 5:2 建议尺寸 750*300 -->
+
+<view class="bannerBox">
+  <swiper class="bannerCont" autoplay="true" circular="true" previous-margin="60rpx" next-margin="60rpx" display-multiple-items="1.05">
+    <block wx:for="{{config.post_data}}" wx:key="index">
+      <swiper-item class="bannerItem">
+        <image class="bannerImg" src="{{item.post_img}}" data-link="{{item.jump_data}}" mode="aspectFill" catchtap="post_click"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+<!-- 两列列表 -->
+<view class="liveBox liveColBlock" wx:if="{{config.list_style ==1}}">
+  <view class="liveItem" wx:for="{{room_list}}" wx:key="index">
+    <view class="liveCoverBox" catchtap="go" data-id="{{item.roomid}}">
+      <image class="liveItemCover" src="{{item.anchor_img}}" mode="aspectFill" ></image>
+      <view class="liveState" wx:if="{{item.live_status == 101}}" >
+        <text class="iconfont iconzhibo"></text>直播</view>
+      <view class="liveState reservation" wx:if="{{item.live_status == 102}}">{{item.start_time}}<text>订阅</text></view>
+      <view class="liveState replay" wx:if="{{item.live_status == 103}}" >
+        <text class="iconfont iconhuifang"></text>已结束</view>
+      <view class="liveState replay" wx:if="{{item.live_status == 107}}" >
+        <text class="iconfont iconhuifang"></text>已过期</view>
+      <view class="liveGoodsBox" wx:if="{{config.list_show_goods == 1}}" catchtap="go" data-id="{{item.roomid}}">
+        <block wx:for="{{item.goods}}" wx:for-item="good">
+          <image class="liveGoodsItem" src="{{good.cover_img}}" mode="aspectFill" data-url="{{good.url}}" catchtap=""></image>
+        </block>
+      </view>
+    </view>
+    <view class="flex liveInfoBox">
+      <view class="sub">
+        <view class="liveTitle lineText" catchtap="go" data-id="{{item.roomid}}">{{item.name}}</view>
+        <view class="flex">
+          <view class="sub liveAnchor lineText" catchtap="go" data-id="{{item.roomid}}">主播：{{item.anchor_name}}</view>
+          <view class="liveShareBtn" hover-class="hover" catchtap="showShareTap" data-index="{{index}}">
+            <text class="iconfont iconshare"></text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+</view>
+<!-- 横排列表 -->
+<view class="liveBox liveListBlock" wx:if="{{config.list_style == 2}}">
+  <view class="liveItem" wx:for="{{room_list}}" wx:key="index">
+
+    <view class="liveCoverBox" catchtap="go" data-id="{{item.roomid}}">
+      <image class="liveItemCover" src="{{item.anchor_img}}" mode="aspectFill"></image>
+      <view class="liveState"  wx:if="{{item.live_status == 101}}">
+        <text class="iconfont iconzhibo" ></text>直播</view>
+      <view class="liveState reservation" wx:if="{{item.live_status == 102}}">
+        {{item.start_time}}<text>订阅</text></view>
+      <view class="liveState replay" wx:if="{{item.live_status == 103}}" >
+        <text class="iconfont iconhuifang"></text>已结束</view>
+         <view class="liveState replay" wx:if="{{item.live_status == 107}}" >
+        <text class="iconfont iconhuifang"></text>已过期</view>
+    </view>
+    <view class="flex liveInfoBox">
+      <view class="sub" catchtap="go" data-id="{{item.roomid}}">
+        <view class="liveTitle lineText" >{{item.name}}</view>
+        <view class="liveAnchor" >主播：{{item.anchor_name}}</view>
+        <view class="flex liveGoods" >
+          <view class="liveGoodsBox" wx:if="{{config.list_show_goods == 1}}">
+            <block wx:for="{{item.goods}}" wx:for-item="good">
+              <image class="liveGoodsItem" src="{{good.cover_img}}" data-url="{{good.url}}" mode="aspectFill" catchtap=""></image>
+            </block>
+          </view>
+          <view class="liveShareBtn" hover-class="hover" catchtap="showShareTap" data-index="{{index}}">
+            <text class="iconfont iconshare"></text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 大图展示 -->
+<view class="liveBox liveBlockBox" wx:if="{{config.list_style == 0}}">
+  <view class="liveItem" wx:for="{{room_list}}" wx:key="index">
+    <view class="liveCoverBox" catchtap="go" data-id="{{item.roomid}}">
+      <image class="liveItemCover" src="{{item.anchor_img}}" mode="aspectFill" ></image>
+      <view class="liveState" wx:if="{{item.live_status == 101}}">
+        <text class="iconfont iconzhibo"></text>直播</view>
+      <view class="liveState reservation" wx:if="{{item.live_status == 102}}">
+        {{item.start_time}}<text>订阅</text></view>
+      <view class="liveState replay" wx:if="{{item.live_status == 103}}" >
+        <text class="iconfont iconhuifang"></text>已结束</view>
+      <view class="liveState replay" wx:if="{{item.live_status == 107}}" >
+        <text class="iconfont iconhuifang"></text>已过期</view>
+      <view class="flex liveInfoBox">
+        <view class="sub" catchtap="go">
+          <view class="liveTitle lineText">{{item.name}}</view>
+          <view class="liveAnchor">主播：{{item.anchor_name}}</view>
+        </view>
+        <view class="liveShareBtn" hover-class="hover" catchtap="showShareTap" data-index="{{index}}">
+          <text class="iconfont iconshare"></text>
+        </view>
+      </view>
+    </view>
+    <view class="liveGoodsBox" wx:if="{{config.list_show_goods == 1}}" catchtap="go" data-id="{{item.roomid}}">
+      <block wx:for="{{item.goods}}" wx:for-item="good">
+        <image class="liveGoodsItem" src="{{good.cover_img}}" data-url="{{good.url}}" mode="aspectFill" catchtap=""></image>
+      </block>
+    </view>
+  </view>
+
+</view>
+
+<!-- 分享弹出框 -->
+<view class="PopupBox" wx:if="{{isShowshare}}">
+  <view class="PopupBottom">
+    <view class="flex shareBox">
+      <button class="sub shareItem" hover-class="hover" open-type="share">
+        <image class="shareItemImg" src="http://static.ixiaochengxu.cc/mofang/images/common/wxChart/WeChat.svg" mode="aspectFit"></image>
+        <view>分享好友</view>
+      </button>
+      <view class="sub shareItem" hover-class="hover" bindtap="get_qrcode">
+        <image class="shareItemImg" src="http://static.ixiaochengxu.cc/mofang/images/common/wxChart/WeChatCircle.svg" mode="aspectFit"></image>
+        <view>分享朋友圈</view>
+      </view>
+    </view>
+  </view>
+  <view class="PopupBg" bindtap="cancleShare" catchtouchmove="true"></view>
+</view>
+<!--  -->
+<!-- 海报 弹出框 -->
+<view class="PopupBox" wx:if="{{isShowPoster}}" bindtap="cancleShare">
+  <view class="PopupCenter posterBox">
+    <canvas class="posterCanvas" canvas-id="posterCanvas"></canvas>
+  </view>
+  <view class="PopupBg" bindtap="cancleShare" catchtouchmove="true"></view>
+</view>

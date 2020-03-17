@@ -1,0 +1,5 @@
+
+@import "./font.wxss";
+.iconfont{font-size: inherit;}
+
+page{font-size: 32rpx;}

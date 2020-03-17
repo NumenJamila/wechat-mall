@@ -1,0 +1,10 @@
+<!--pages/user/myBusinessCard/myBusinessCard.wxml-->
+<view class="businessCardBox">
+  <view class="businessCard flex" wx:for="{{service_card_list}}" catchtap="linkToTap" data-id="{{item.id}}">
+    <image class="cardUserImg" src="{{item.headimgurl}}" mode="aspectFill"></image>
+    <view class="sub">
+      <view class="cardUserName"><text class="cardUserNametext lineText">{{item.realname}}</text><text class="cardUserTag">{{item.tags}}</text></view>
+      <view class="cardCompany lineText">{{item.company_name}}</view>
+    </view>
+  </view>
+</view>

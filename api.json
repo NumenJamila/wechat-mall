@@ -1,0 +1,154 @@
+{
+  "code": 1,
+  "info": {
+    "community_config": [],
+    "live_room": "",
+    "index_tuijian_list": [
+      {
+        "id": "2038894",
+        "g_name": "AEMAPE苹果春秋款商务休闲男士T恤时尚简约翻领长袖polo衫爸爸款",
+        "shop_price": "99.00",
+        "market_price": "598.00",
+        "g_img": "https://img.alicdn.com/imgextra/i1/1856195765/O1CN01ziHof71sSPsVXANYk_!!0-item_pic.jpg_500x500q90.jpg",
+        "vip_price": "0.00",
+        "is_promote": "0",
+        "promote_price": "0.00",
+        "promote_start_date": "0",
+        "promote_end_date": "0",
+        "sale_number": "0",
+        "g_number": "7920",
+        "is_showvip": "1",
+        "corner_mark": "",
+        "goods_kind": "0",
+        "promote_status": 0,
+        "showvip_status": 0
+      }
+    ],
+    "index_hot_list": [
+      {
+        "id": "2038894",
+        "g_name": "AEMAPE苹果春秋款商务休闲男士T恤时尚简约翻领长袖polo衫爸爸款",
+        "shop_price": "99.00",
+        "market_price": "598.00",
+        "g_img": "https://img.alicdn.com/imgextra/i1/1856195765/O1CN01ziHof71sSPsVXANYk_!!0-item_pic.jpg_500x500q90.jpg",
+        "vip_price": "0.00",
+        "is_promote": "0",
+        "promote_price": "0.00",
+        "promote_start_date": "0",
+        "promote_end_date": "0",
+        "sale_number": "0",
+        "g_number": "7920",
+        "is_showvip": "1",
+        "corner_mark": "",
+        "goods_kind": "0",
+        "promote_status": 0,
+        "showvip_status": 0
+      }
+    ],
+    "index_new_list": [
+      {
+        "id": "2038894",
+        "g_name": "AEMAPE苹果春秋款商务休闲男士T恤时尚简约翻领长袖polo衫爸爸款",
+        "shop_price": "99.00",
+        "market_price": "598.00",
+        "g_img": "https://img.alicdn.com/imgextra/i1/1856195765/O1CN01ziHof71sSPsVXANYk_!!0-item_pic.jpg_500x500q90.jpg",
+        "vip_price": "0.00",
+        "is_promote": "0",
+        "promote_price": "0.00",
+        "promote_start_date": "0",
+        "promote_end_date": "0",
+        "sale_number": "0",
+        "g_number": "7920",
+        "is_showvip": "1",
+        "corner_mark": "",
+        "goods_kind": "0",
+        "promote_status": 0,
+        "showvip_status": 0
+      }
+    ],
+    "index_cate_list": null,
+    "index_pinpai_list": [
+      {
+        "id": "75196",
+        "token": "a69942490980010a",
+        "cate_id": "0",
+        "name": "品牌1",
+        "icon": "http://xrs.ixiaochengxu.cc/2020-03-17_5e70892f7a6a5.png",
+        "is_order": "1",
+        "updatetime": "1584434138",
+        "is_show": "1",
+        "is_del": "0",
+        "isselect": false
+      }
+    ],
+    "index_swiper_list": [
+      {
+        "id": "77967",
+        "title": "实习第一周",
+        "img": "12446385",
+        "url": "",
+        "is_show": "1",
+        "is_order": "1",
+        "token": "a69942490980010a",
+        "update_time": "1584433487",
+        "is_del": "0",
+        "img_url": "http://xrs.ixiaochengxu.cc/2020-03-17_5e70892f7a6a5.png"
+      }
+    ],
+    "index_ad_list": null,
+    "index_quan_list": null,
+    "index_show_quan_list": [],
+    "public": {
+      "shop_notice": "",
+      "shop_notice_arr": [
+        ""
+      ],
+      "is_position": 0
+    },
+    "index_set": [
+      {
+        "name": "search",
+        "config": ""
+      },
+      {
+        "name": "swiper",
+        "config": ""
+      },
+      {
+        "name": "notice",
+        "config": ""
+      },
+      {
+        "name": "cap",
+        "config": ""
+      },
+      {
+        "name": "light_member",
+        "config": ""
+      },
+      {
+        "name": "brand",
+        "config": ""
+      },
+      {
+        "name": "ad",
+        "config": ""
+      },
+      {
+        "name": "tuijian",
+        "config": ""
+      },
+      {
+        "name": "hot",
+        "config": ""
+      },
+      {
+        "name": "new",
+        "config": []
+      }
+    ],
+    "shop_config": null,
+    "colonel_uid": null,
+    "today": "2020.03.17"
+  }
+}

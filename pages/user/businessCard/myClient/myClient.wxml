@@ -1,0 +1,11 @@
+<!--pages/user/myClient/myClient.wxml-->
+<view class="businessCardBox" wx:if="{{customer_list}}">
+  <view class="businessCard flex" wx:for="{{customer_list}}" bindtap='jumpClient' data-uid="{{item.uid}}">
+    <image class="cardUserImg" src="{{item.headimgurl}}" mode="aspectFill"></image>
+    <view class="sub">
+      <view class="cardUserName"><text class="cardUserNametext lineText">{{item.nickname}}</text></view>
+      <!-- <view class="cardCompany lineText">{{item.hidden_phone}}</view> -->
+    </view>
+    <!--<view class="cardTellIco" hover-class="hover"><text>{{item.record}}次互动记录</text></view>-->
+  </view>
+</view>

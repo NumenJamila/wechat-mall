@@ -1,0 +1,51 @@
+<!--pages/plug-in/giftsLibrary/index/index.wxml-->
+<view class="giftsList">
+  <view class="giftsLi flex" wx:for="{{gift_list}}" wx:key="key">
+    <image src="{{item.g_img}}" mode="aspectFill"></image>
+    <view class="sub giftCont flex">
+      <view bindtap="tckClick" data-goods_name="{{item.goods_name}}" data-have_buy_condition_str="{{item.have_buy_condition_str}}" data-buy_limit="{{item.buy_limit}}" data-one_buy_num="{{item.one_buy_num}}" data-send_num="{{item.send_num}}" data-remain_num="{{item.remain_num}}" data-end_days_str="{{item.end_days_str}}" data-id="{{item.id}}">
+        <view class="title lineText">{{item.goods_name}}</view>
+        <view class="subtitle flex">
+          <view class="sub"><text wx:if="{{item.id > 0}}">剩余{{item.remain_num}}份</text>{{item.end_days_str}}</view>
+        </view>
+        <view class="limit lineText">{{item.have_buy_condition_str}}</view>
+      </view>
+      <view class="moneyNumbers flex">
+        <view class="money sub">
+          <text class="info">￥</text>
+          <text>{{item.buy_price}}</text>
+          <text class="originalPrice">原价：{{item.false_price}}</text>
+        </view>
+        <!-- 选择数量 -->
+        <view class="addGifts flex" wx:if="{{item.is_select}}">
+          <text class="iconfont icon-move reduce" catchtap="giftSelectReduce" data-index="{{index}}" data-gift_id="{{item.gift_id}} " data-send_id="{{item.id}}"></text>
+          <input value="{{item.select_num}}" type="number" cursor-spacing="10" disabled="true"></input>
+          <text class="iconfont icon-add add" catchtap="giftSelectAdd" data-index="{{index}}" data-gift_id="{{item.gift_id}}"></text>
+        </view>
+        <!-- 兑换 禁用状态disableBtn-->
+        <button wx:if="{{!item.is_select}}" class="giftsBtn {{(item.no_achieve_condition == 1 || !item.can_select || item.is_limit) ? 'disableBtn' : ''}}" catchtap="{{(item.no_achieve_condition == 0 && !item.is_select && item.can_select && !item.is_limit) ? 'giftSelectAdd' : ''}}" data-index="{{index}}" data-gift_id="{{item.gift_id}}" data-send_id="{{item.id}}" hover-class="hoverBtn">兑一份</button>
+      </view>
+    </view>
+  </view>
+  <!-- 我的兑换记录 -->
+  <view class="recordBtn" bindtap="recorgGo" data-url="/pages/user/giftsLibrary/record/record">我的兑换记录</view>
+  <!-- 确定 -->
+  <view class="giftsFooter">
+    <view class="flex footerBox">
+      <view class="sub">兑换<text class="red">{{all_select_num}}</text>件</view>
+      <button hover-class="hoverBtn" catchtap="goBuy">确定</button>
+    </view>
+  </view>
+  <!-- 弹框 -->
+  <view class="giftsTck" wx:if="{{giftsTck}}">
+    <view class="tckBg"></view>
+    <view class="tckCont">
+      <view class="tckClose iconfont icon-close" bindtap="tckClick"></view>
+      <view class="title">{{tips.goods_name}}</view>
+      <view class="subtitle">{{tips.have_buy_condition_str}}</view>
+      <view class="conditions">每天可兑换{{tips.buy_limit}}次每次可兑换{{tips.one_buy_num}}份</view>
+      <view class="conditions" wx:if="{{tips.id > 0}}">共{{tips.send_num}}份已兑换{{tips.remain_num}}份还可兑换{{tips.exchange_num}}份</view>
+      <view class="conditions">{{tips.end_days_str}}</view>
+    </view>
+  </view>
+</view>

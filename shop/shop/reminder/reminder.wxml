@@ -1,0 +1,67 @@
+<!--pages/shop/reminder/index.wxml-->
+<image class="ordersTopBg" src="http://static.ixiaochengxu.cc/mofang/images/shop/ordersTopBg.png" mode="widthFix"></image>
+<view class="flex wechatBox">客服微信
+  <view class="sub lineText wechatNum">{{pay_and_have_gift_record.wechat}}</view>
+  <button class="wechatCopyBtn" catchtap="copy_wechat">复制</button>
+</view>
+<!-- 评价标签的展示 -->
+<view class="labelBox">
+  <button class="labelItem {{item.clicked?'active':''}}" wx:for="{{labels}}" catchtap="label_click" data-id="{{item.id}}" data-clicked="{{item.clicked}}">
+    <text>{{item.name}}</text><text class="iconfont icon-close"></text>{{item.click_count}}</button>
+</view>
+<!-- 老板接单 -->
+<view class="boss gridXt" wx:if="{{pay_and_have_gift_record.show_current_order ==1}}">
+<view class="orderTitText"><text class="iconfont icon-peoplefill"></text> 老板接单</view>
+<view class="boss_txt">收货人：<text class="name">{{order.consignee}}</text> <text class="phone">{{order.mobile}}</text></view>
+<view class="boss_good">
+  <view class="item" wx:for="{{order.goods}}">
+    <image src="{{item.goods_img}}" mode="aspectFill" class="img"></image>
+    <view class="info" catchtap="go_goods_detail" data-id="{{item.goods_id}}">
+      <view class="tit lineText">{{item.goods_name}}</view>
+      <view class="att"><text>{{item.goods_attr}}</text></view>
+      <view class="foot">
+        <view class="price">￥{{item.goods_price}}</view>
+        <view class="count"><text class="iconfont icon-close"></text>{{item.goods_number}}</view>
+      </view>
+    </view>
+  </view>
+
+</view>
+</view>
+<!-- 订单信息的展示 -->
+<view class="flex orderTitBox gridXt" wx:if="{{pay_and_have_gift_record.show_recent_order ==1}}">
+  <view class="sub orderTitText"><text class="iconfont icon-text"></text> 最近接单</view>
+
+  <!-- <checkbox-group bindchange="my_check_box_change" >
+    <label class="orderFilter" wx:for="{{my_check_box}}">
+      <checkbox value="{{item.name}}" checked="{{item.checked}}">{{item.value}}</checkbox>
+    </label>
+  </checkbox-group> -->
+</view>
+<view class="orderGoodsBox">
+  <view class="orderGoodsItem" wx:for="{{order_goods}}" catchtap="go_goods" data-id="{{item.id}}" data-is_sale="{{item.is_sale}}">
+    <view class="flex">
+      <view class="sub orderGoodsName lineText2">{{item.name}}</view>
+      <view class="orderGoodsNum">x{{item.count}}</view>
+    </view>
+    <view class="orderGoodsMsg">
+      <view class="sub">
+        <text class="{{item.is_my?'lightText':''}}">{{item.from_str}}</text>
+        <text class="orderMsgTag">已接单</text>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 底部固定 -->
+<block wx:if="{{cart_num}}">
+  <view class="bottomBtnBox">
+    <button class="bottomBtnFiexd" type="primary" bindtap="bind_go_cart">
+      <text class="iconfont icon-cartfill"></text> 我也要去购物车</button>
+  </view>
+</block>
+<block wx:else>
+  <view class="bottomBtnBox">
+    <button class="bottomBtnFiexd" type="primary" bindtap="bind_go_index">
+      <text class="iconfont icon-cartfill"></text> 我也要去购物</button>
+  </view>
+</block>

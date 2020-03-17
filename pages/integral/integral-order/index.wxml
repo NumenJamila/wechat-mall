@@ -1,0 +1,87 @@
+<!--pages/integral/integral-order/index.wxml-->
+<!-- 地址 -->
+<block wx:if="{{user_delivery_info==1}}">
+  <block wx:if="{{isShowChooseAddress}}">
+    <!-- 无地址 -->
+    <view class="addressBox" hover-class="hoverBox">
+      <view class="addressNot">
+        <image src="http://www.ixiaochengxu.cc/resource/images/user/pointsMall/notaddress.png" mode="aspectFill"></image>
+        <text>暂无信息，</text>
+        <text class="active" catchtap='chooseAddress'>请填写</text>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <!-- 有地址 -->
+    <view class="addressBox flex" hover-class="hoverBox">
+      <view class="addressHave sub">
+        <view class="namePhone">
+          姓名：<text class="name">{{receiving_info.name}}</text>
+          <text>{{receiving_info.mobile}}</text>
+        </view>
+        <view class="address">地址：{{receiving_info.address}}</view>
+      </view>
+      <view class="iconfont icon-youjiantou" catchtap='chooseAddress' ></view>
+    </view>
+  </block>
+</block>
+<!-- 商品 -->
+<view class="goods" wx:if="{{goods_type==0}}">
+  <view class="goodsBox flex">
+    <image src="{{thumbnail}}" class="goodsImg" mode="aspectFill"></image>
+    <view class="sub contText">
+      <view class="title lineText2">{{title}}</view>
+      <view class="moneys flex">
+        <view class="left sub">
+          <text>{{sale_price}}</text>积分
+        </view>
+        <view class="number">x1</view>
+      </view>
+    </view>
+  </view>
+  <view class="freight flex gridXb">
+    <text class="sub">运费</text>
+    <text>￥{{shipping_fee}}</text>
+  </view>
+  <view class="forInstructions">
+    <view class="forInstructions_title">兑换说明</view>
+    <import src="../../../wxParse/wxParse.wxml" />
+    <template is="wxParse" data="{{wxParseData:content.nodes}}" />
+  </view>
+</view>
+<!-- 优惠券 -->
+<view class="goods" wx:else>
+  <view class="flex goodsBox gridXb">
+    <view class="ImgBox">
+      <image src="http://www.ixiaochengxu.cc/resource/images/user/pointsMall/couponsBg.png" mode="aspectFill"></image>
+      <view class="coupons">
+        <view class="cost gridXb lineText">{{coupon_info.yh}}</view>
+        <view class="conditions">满{{coupon_info.full_available}}可用</view>
+      </view>
+    </view>
+    <view class="sub contText">
+      <view class="title lineText2">{{title}}</view>
+      <!-- 使用限制 -->
+      <view class="restrictionsBox">
+        <text class="useRestrictions lineText gridFour">限{{tags_str}}使用</text>
+      </view>
+      <view class="moneys flex">
+        <view class="left sub">
+          <text>{{sale_price}}</text>积分
+        </view>
+        <view class="number">x1</view>
+      </view>
+    </view>
+  </view>
+  <view class="forInstructions">
+    <view class="forInstructions_title">兑换说明</view>
+    <import src="../../../wxParse/wxParse.wxml" />
+    <template is="wxParse" data="{{wxParseData:content.nodes}}" />
+  </view>
+</view>
+
+<view class="fiexd-box">
+  <view class="integral-bottom">
+    <button class="integral-btn" form-type='submit' catchtap="onExchangeSubmit">马上兑换</button>
+  </view>
+</view>

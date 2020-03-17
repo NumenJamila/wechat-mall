@@ -1,0 +1,53 @@
+/* pages/shop/reminder/index.wxss */
+/* 引入公共样式 */
+@import "/pages/shop/common/common.wxss";
+
+page{background: #fff;}
+
+.ordersTopBg{width: 100%;height: 332rpx;vertical-align: top;}
+/* 微信号 */
+.wechatBox{width: 690rpx;padding: 20rpx 30rpx;margin: -40rpx auto 20rpx;background: #fff;position: relative;align-items: center;border-radius: 100rpx;font-size: 28rpx;box-shadow: 2rpx 2rpx 20rpx rgba(35, 24, 21, 0.07);}
+.wechatCopyBtn{font-size: 28rpx;color: #009aff;color: var(--DShop-mcolor);line-height: 40rpx;background: transparent;margin-left: 20rpx;}
+.wechatNum{margin-left: 20rpx;}
+/* 标签 */
+.labelBox{padding:20rpx 30rpx 40rpx;}
+.labelItem{display: inline-block;max-width: 100%;font-size: 28rpx;padding: 0 30rpx;border-radius: 60rpx;line-height: 60rpx;margin-right: 20rpx;margin-top: 16rpx;vertical-align: top;background: #f5f5f5;}
+.labelItem.active{background: rgba(251, 94, 46, 0.1);color: #fb5e2e;}
+
+.boss{ padding: 20rpx 30rpx 40rpx; }
+.boss_txt{ margin-top: 20rpx; font-size: 32rpx;}
+.boss_txt .name{ font-weight: bold;}
+.boss_txt .phone{ margin-left: 20rpx; color: #666;}
+.boss_good .item{ background: #f5f5f5; padding: 20rpx; display: flex; border-radius: 6rpx; overflow: hidden;margin-top: 20rpx;}
+.boss_good .info{ flex: 1; overflow: hidden; line-height: 40rpx}
+.boss_good .img{ width: 120rpx; height: 120rpx; margin-right: 20rpx;}
+.boss_good .tit{ font-size: 28rpx; font-weight: bold;}
+.boss_good .att{ color: #999; font-size: 24rpx;}
+.boss_good .att text:nth-child(n+2){ margin-left: 16rpx;}
+.boss_good .foot{ display: flex; justify-content: space-between; align-items: center;}
+.boss_good .price{ color: #f00;}
+.boss_good .iconfont{ color: #999;}
+
+.orderTitBox{padding: 20rpx 30rpx;}
+.orderTitText{font-weight: bold;}
+.orderFilter{color: #009aff;color: var(--DShop-mcolor);font-size: 24rpx;}
+page .wx-checkbox-input{width: 36rpx;height: 36rpx;border-radius: 50%;box-sizing: border-box;}
+page .wx-checkbox-input-checked{background: #009aff;background: var(--DShop-mcolor);border: none;}
+page .wx-checkbox-input-checked::before{color:#fff;font-size: 32rpx!important;}
+page .wx-checkbox-input-disabled{background: transparent;}
+page .wx-checkbox-input.wx-checkbox-input-disabled{background: #f2f2f2;position: relative;}
+page .wx-checkbox-input-disabled::before{content: '';display: block;width: 100%;height: 1px;background: #ccc;position: absolute;top: 50%;left: 50%;transform: translate(-50%,-50%) rotate(45deg);}
+/* 商品列表 */
+.orderGoodsBox{padding-bottom: 30rpx;background: #fff;}
+.orderGoodsBox::before{left: 20rpx;right: 20rpx;}
+.orderGoodsItem{padding: 16rpx 30rpx;line-height: 1.5;}
+.orderGoodsNum{margin-left: 16rpx;}
+.orderGoodsMsg{font-size: 24rpx;color: #999;margin-top: 10rpx;}
+.lightText{color: #009aff;color: var(--DShop-mcolor);}
+.orderMsgTag{display: inline-block;font-size: 24rpx;background: #dcdada;color: #fff;line-height: 48rpx;padding: 0 24rpx;margin-left: 40rpx;border-radius: 44rpx;}
+
+/* 底部按钮 */
+.bottomBtnBox{height: 108rpx;margin-top: 30rpx; }
+.bottomBtnFiexd{position: fixed;bottom: 0;left: 0;right: 0;line-height: 108rpx;font-size: 32rpx;border-radius: 0; font-weight: bold}
+.bottomBtnFiexd .iconfont{ font-weight: normal;}
+

@@ -1,0 +1,21 @@
+
+<block wx:if="{{type=='getPhoneNumber'}}">
+	<view class="loginPopupCont">
+		<image class="loginTipImg" src="http://static.ixiaochengxu.cc/mofang/images/common/loginTipImg.png?v=12352" mode="widthFix"></image>
+    <view class="loginTips">为了更好的体验和使用小程序，请先授权。</view>
+		<view class="loginContBox">
+			<button class="loginTellBtn" open-type="getPhoneNumber" lang="zh_CN" bindgetphonenumber="onGetPhoneNumber">绑定手机号</button>
+			<!-- <navigator url="" open-type="navigateBack" class="weui-msg__link">暂不登录</navigator> -->
+		</view>
+	</view>
+</block>
+<block wx:else>
+	<view class="loginPopupCont">
+		<image class="loginPopImg" src="http://www.ixiaochengxu.cc/resource/images/common/loginPopup.png" mode="widthFix"></image>
+		<view class="loginContBox">
+			<button class="loginBtn" type="primary" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onUserInfo">微信安全登录</button>
+			<navigator url="" open-type="navigateBack" class="weui-msg__link">暂不登录</navigator>
+		</view>
+	</view>
+</block>
+

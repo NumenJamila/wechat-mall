@@ -1,0 +1,72 @@
+/* pages/shop/shareMember/shareMember.wxss */
+@import "/wxParse/wxParse.wxss";
+page{background-image: linear-gradient(  #fff3de,#ffe6c1);font-size: 32rpx;background-attachment: fixed;}
+.pageContBox{background-image: url('https://www.ixiaochengxu.cc/resource/images/shop/vip//vipShareBg.png');background-size: contain;background-position: top;padding-bottom: 40rpx;background-repeat: no-repeat;}
+
+/* 卡劵 自己分享的状态 */
+.couponBox{margin-top: 50rpx;margin-left: auto;margin-right: auto;}
+.couponBg{background: #fcd094;width: 530rpx;margin: auto;padding: 30rpx 22rpx 0;border-radius: 6rpx;position: relative;overflow: hidden;}
+.couponBg::before{content: '';display: block;height: 60rpx;
+background: radial-gradient(#fff3de 15rpx,transparent 0);background-size: 60rpx 60rpx;
+position: absolute;top: -30rpx;left: 26rpx;right: 30rpx;}
+.couponCont{text-align: center;background: #fef6ea;color: #875e25;padding: 30rpx;padding-bottom: 50rpx;}
+.couponTitle{font-size: 32rpx;font-weight: bold;}
+.couponDayBox{margin-top: 30rpx;font-size: 24rpx;}
+.couponDayNum{font-size: 60rpx;font-weight: bold;}
+.couponCover{display: block;width: 590rpx;margin: -90rpx auto 0;position: relative;z-index: 1;}
+/* 领取进度 */
+progress{width: 580rpx;margin: 40rpx auto 20rpx;}
+/* 进度条 */
+page .wx-progress-bar{height: 20rpx!important;border-radius: 20rpx!important;background: #fff!important;}
+page .wx-progress-inner-bar{border-radius:inherit;background-color: #e4b773!important;position: relative;}
+.shareTips{font-size: 28rpx;text-align: center;color: #875e25;}
+/* 按钮 */
+.couponShareBox{width: 580rpx;margin: 40rpx auto 0;}
+.couponBtnItem{background: #e4b773;color: #fff;line-height: 80rpx;font-size: 32rpx;border-radius: 80rpx;font-weight: bold;}
+.couponBtnItem.button-hover{background: #f3cd93;}
+.couponBtnItem::after{display: none;}
+.couponBtnItem:nth-child(n+2){margin-top: 30rpx;}
+.couponBtnLine{background: transparent;color: #e4b773;border: 1px solid;}
+.couponBtnLine.button-hover{background: rgba(228, 183, 115, 0.06);}
+
+/* 卡劵好友领取的状态 */
+.couponReceiveBox{margin-top: 50rpx;margin-left: auto;margin-right: auto;}
+.couponReceiveTop{width: 690rpx;height: 38rpx;background: #e4b773;border-radius: 40rpx;margin: auto;}
+.couponReceiveCont{background: #fff;padding: 20rpx 30rpx;width: 620rpx;margin: -24rpx auto 0;border-radius: 0 0 6rpx 6rpx;}
+.receiveTopInfo{padding: 20rpx 20rpx 40rpx;}
+.shareUserBox{font-size: 28rpx;align-items: center;}
+.shareUser{width: 50rpx;height: 50rpx;border-radius: 50%;margin-right: 20rpx;}
+.receiveTitle{font-size: 32rpx;font-weight: bold;text-align: center;color: #875e25;margin-top: 30rpx;}
+.receiveBottomInfo{padding: 40rpx 10rpx 30rpx;border-top: 1px dashed #c77d09;position: relative;}
+.receiveBottomInfo::before,.receiveBottomInfo::after{content: '';display: block;width: 30rpx;height: 30rpx;border-radius: 50%;background: #fff2dc;position: absolute;top: -15rpx;}
+.receiveBottomInfo::before{left: -45rpx;}
+.receiveBottomInfo::after{right: -45rpx;}
+/* 领取会员卡 */
+.cardFace{background-image: linear-gradient( 28deg, #fe4b49, #ff775c);color: #fff;padding: 20rpx 30rpx;border-radius: 10rpx 10rpx 0 0;box-shadow: 0 0 7px rgba(210, 42, 37, 0.15);}
+.cardTitle{font-size: 32rpx;font-weight: bold;}
+.cardRemaining{font-size: 24rpx;opacity: .8;}
+.cardReceiveTips{font-size: 24rpx;}
+.couponReceiveBox .couponShareBox{width: 100%;margin-top: 50rpx;}
+
+/* 抢完了 */
+.cardFace.grabbed{background: #b9b9b9;box-shadow: none;}
+
+
+.contItemBox{margin-top: 60rpx;padding: 0 30rpx;}
+.contItemTitle{display: flex;display: -webkit-flex;align-items: center;justify-content: center;color: #875e25;margin-bottom: 30rpx;}
+.contTitleIco{width: 180rpx;height: 20rpx;margin: 0 20rpx;}
+.contTitleIco:last-child{transform: rotateY(180deg);}
+
+/* 记录列表 */
+.recordingBox{border:6rpx solid #e4b773;background: #fff;padding: 20rpx 30rpx;border-radius: 10rpx;}
+.recordingItem{padding: 20rpx 0;line-height: 1.2;align-items: center;}
+.recordingUser{width: 80rpx;height: 80rpx;border-radius: 50%;margin-right: 20rpx;}
+.recordingUserName{font-size: 28rpx;font-weight: bold;}
+.recordingTime{font-size: 24rpx;color: #999;margin-left: 20rpx;align-self: center;}
+.recordingTipBox{margin-top: 16rpx;font-size: 24rpx;color: #999;}
+.recordingMore{width: 360rpx;margin: auto;color: #e4b773;font-size: 24rpx;text-align: center;}
+.recordingMore .iconfont{font-size: 20rpx;vertical-align: 2rpx;}
+
+/* 规则说明 */
+.ruleBox{font-size: 28rpx;color: #875e25;line-height: 1.5;padding-bottom: 30rpx;}
+.ruleItem:nth-child(n+2){margin-top: 20rpx;}

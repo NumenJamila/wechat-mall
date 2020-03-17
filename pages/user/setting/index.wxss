@@ -1,0 +1,13 @@
+/* pages/user/setting/index.wxss */
+@import '../common.wxss';
+page{background: #fff;}
+.my-menu-item{
+  padding: 0 30rpx;
+  line-height: 92rpx;
+  background: transparent;
+  border-radius: 0;
+  text-align: left;
+  font-size: 32rpx;
+}
+.my-menu-item .iconfont{font-size: 36rpx;}
+.my-menu-item::after{display: none;}

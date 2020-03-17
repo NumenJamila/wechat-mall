@@ -1,0 +1,38 @@
+/* pages/plug-in/giftsLibrary/index/index.wxss */
+.giftsLi{padding: 35rpx 30rpx;background: white;line-height: 1.2;margin-bottom: 20rpx;}
+.giftsLi image{width: 160rpx;height: 160rpx;margin-right: 22rpx;border-radius: 6rpx;}
+.giftsLi .title{color: #333;font-size: 32rpx;}
+.giftsLi .subtitle{margin-top: 12rpx;font-size: 24rpx;color: #999;}
+.giftsLi .limit{color: #FEA512;font-size: 24rpx;margin-top: 6rpx;}
+.giftCont{flex-direction: column;justify-content: space-between;}
+.moneyNumbers{align-items: flex-end;}
+.moneyNumbers input{width: 80rpx;text-align: center;line-height: 36rpx;padding: 0;min-height: auto;font-size: 28rpx;color: #333;font-weight: bold;}
+.moneyNumbers .iconfont{width: 36rpx;height: 36rpx;border-radius: 50%;font-weight: bold;text-align: center;line-height: 36rpx;}
+.moneyNumbers .add{background: #F35150;color: white}
+.moneyNumbers .reduce{border: 1rpx solid #F35150;color: #F35150;}
+.addGifts{width: 160rpx;align-items: center;}
+.moneyNumbers .money{font-size: 32rpx;color: #F35150;}
+.moneyNumbers .info{font-size: 24rpx;}
+.originalPrice{font-size: 22rpx;color: #999;margin-left: 20rpx;}
+.moneyNumbers button{width: 136rpx;height: 52rpx;line-height: 52rpx;padding: 0;font-size: 28rpx;color: white;border-radius: 26rpx;}
+.moneyNumbers button::after{border: none;}
+.hoverBtn{opacity: 0.8;}
+.giftsBtn{background: #F35150;}
+.disableBtn{background: #C4C4C4;}
+
+.recordBtn{text-align: center;font-size: 24rpx;color: #333;padding: 10rpx 0 60rpx 0;}
+
+.giftsFooter{height: 98rpx;}
+.footerBox{position: fixed;bottom: 0;left: 0;width: 100%;padding-left: 47rpx;align-items: center;background: white;z-index: 2;font-size: 28rpx;}
+.footerBox button{width: 266rpx;height: 98rpx;line-height: 98rpx;padding: 0;border-radius: 0;font-size: 32rpx;font-weight: bold;background: #F35150;color: white;}
+.footerBox button::after{border-radius: 0;border: none;}
+
+/* 弹框 */
+.giftsTck{position: relative;z-index: 5;}
+.tckBg{position: fixed;z-index: 1;left: 0;top: 0;width: 100%;height: 100%;background: rgba(0, 0, 0, 0.6);}
+.tckCont{position: fixed;z-index: 2;top: 50%;left: 50%;transform: translate(-50%,-50%);background: white;width: 690rpx;padding: 55rpx 45rpx 50rpx 45rpx;line-height: 1.2;border-radius: 10rpx;max-height: 660rpx;overflow: auto;}
+.tckCont .title{font-size: 32rpx;font-weight: bold;margin-bottom: 20rpx;}
+.tckCont .subtitle{font-size: 28rpx;color: #999;margin-bottom: 40rpx;}
+.tckCont .conditions{margin-bottom: 25rpx;color: #666;}
+.tckCont .conditions:nth-last-of-type(1){margin-bottom: 0;}
+.tckClose{position: absolute;font-size: 28rpx;top: 16rpx;right: 16rpx;width: 50rpx;height: 50rpx;text-align: center;line-height: 50rpx;color: #dcdcdc}

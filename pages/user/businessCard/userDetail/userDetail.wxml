@@ -1,0 +1,145 @@
+<!--pages/user/userDetail/userDetail.wxml-->
+
+<view class="flex userInfoBox">
+  <image class="userImg" src="{{user_detail.user_info.headimgurl}}" mode="aspectFill"></image>
+  <view class="sub">
+    <view class="userName">{{user_detail.user_info.nickname}}</view>
+    <view class="userTagsBox" wx:if="{{user_detail.title_data}}">
+      <text class="userTagItem lineText" wx:for="{{user_detail.title_data}}">{{item.tag}}</text>
+    </view>
+  </view>
+</view>
+
+<!-- tab 选项卡 -->
+<view class="flex locusTabFiexd">
+    <view class="locusTabItem {{topTab==1?'active':''}}" data-id="1" bindtap="toptabTap" hover-class="hover">访客轨迹</view>
+    <view class="locusTabItem {{topTab==2?'active':''}}" data-id="2" bindtap="toptabTap" hover-class="hover">访客统计</view>
+    <view class="locusTabItem {{topTab==3?'active':''}}" data-id="3" bindtap="toptabTap" hover-class="hover">访客记录</view>
+  </view>
+<!-- AI轨迹 -->
+<block wx:if="{{topTab==1}}">
+  <view class="locusContBox" wx:if="{{locus_list}}">
+    <view class="locusContItem" wx:for="{{locus_list}}"  wx:for-index="index" wx:for-item="item">
+      <view class="locusContTime">{{index}}</view>
+      <view class="locusItem flex" wx:for="{{item}}" wx:for-index="idx" wx:for-item="it">
+        <image class="locusItemuser" src="{{it.headimgurl}}" mode="aspectFill"></image>
+        <view class="sub"><text class="locusItemItem">【{{it.locus_time_hour}}】</text><text class='nickname_color'>{{it.nickname}}</text><text>{{it.type_speck[0]}}</text><text class='goods_name_color'>{{it.type_speck[1]}}</text></view>
+      </view>
+    </view>
+  </view>
+</block>
+<!-- AI统计 -->
+<block wx:if="{{topTab==2}}">
+  <view class="locusContBox">
+    <view class="locusContItem">
+      <view class="flex">
+        <view class="locusContTime sub">最近{{days}}天内数据</view>
+        <view class="filterDateTime" hover-class="hover" catchtap='showSelect'>近{{days}}天 <text class="iconfont icon-xiangxia1"></text></view>
+        <view class="filterDatePop" wx:if="{{show_select}}">
+          <view class="filterDateItem" catchtap='selectDays' data-days="7">近7天</view>
+          <view class="filterDateItem" catchtap='selectDays' data-days="15">近15天</view>
+          <view class="filterDateItem" catchtap='selectDays' data-days="30">近30天</view>
+        </view>
+      </view>
+      <view class="infoContBox">
+        <view class="infoItemBox flex">
+          <view class="infoItem">
+            <view>访问次数</view>
+            <view class="infoItemNum">{{statistics_data.all.visit_count}}</view>
+          </view>
+          <view class="infoItem">
+            <view>分享次数</view>
+            <view class="infoItemNum">{{statistics_data.all.share_count}}</view>
+          </view>
+          <view class="infoItem">
+            <view>开通会员</view>
+            <view class="infoItemNum">{{statistics_data.all.member_count}}</view>
+          </view>
+          <view class="infoItem">
+            <view>福包提现</view>
+            <view class="infoItemNum">{{statistics_data.all.cash_count}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="locusContItem">
+      <view class="locusContTime">我的卡片</view>
+      <view class="infoContBox" wx:for="{{statistics_data}}" wx:if="{{index == 'shop'}}">
+        <view class="infoContTit"><text class="iconfont {{item.icon}}"></text>{{item.module}}</view>
+        <view class="infoItemBox cardItemBox">
+          <view class="infoItem">
+            <view>查看商品</view>
+            <view class="infoItemNum">{{item.browse_count}}</view>
+          </view>
+          <view class="infoItem">
+            <view>下单次数</view>
+            <view class="infoItemNum">{{item.buy_count}}</view>
+          </view>
+          <view class="infoItem">
+            <view>退款次数</view>
+            <view class="infoItemNum">{{item.refund_count}}</view>
+          </view>
+          <view class="infoItem">
+            <view>领券次数</view>
+            <view class="infoItemNum">{{item.coupon_count}}</view>
+          </view>
+          <view class="infoItem">
+            <view>开通VIP+</view>
+            <view class="infoItemNum">{{item.vip_count}}</view>
+          </view>
+          <view class="infoItem">
+            <view>参加秒杀</view>
+            <view class="infoItemNum">{{item.seckill_count}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+<!-- AI记录 -->
+<block wx:if="{{topTab==3}}">
+  <view class="locusContBox" wx:if="{{record_list}}">
+    <view class="locusContItem" wx:for="{{record_list}}" wx:for-index="index" wx:for-item="item">
+      <view class="locusContTime">{{index}}</view>
+      <view class="recordingItem" wx:for="{{item}}" wx:for-index="idx" wx:for-item="it">
+        <view class="recordingUserInfo flex {{it.show ? 'active' : ''}}" bindtap='recordShow' data-one="{{index}}" data-two="{{idx}}">
+          <image class="locusItemuser" src="{{it.list[0].headimgurl}}" mode="aspectFill"></image>
+          <view class="sub">{{idx}}</view>
+          <text class="recordingMoreIco iconfont icon-unfold"></text>
+        </view>
+        <view class="recordingMsgBox" wx:if="{{it.show}}">
+          <view class="recordingMsgItem flex" wx:for="{{it.list}}" wx:for-index="key" wx:for-item="value">
+            <view class="sub" wx:if="{{value.type == 0}}"><text class='nickname_color'>{{value.nickname}}</text>为<text class='nickname_color'>{{value.tags_nickname}}</text>设置了 <text class="locusItemInfo">【{{value.action}}】</text>标签</view>
+            <view class="sub" wx:if="{{value.type == 1}}"><text class='nickname_color'>{{value.nickname}}</text>为<text class='nickname_color'>{{value.tags_nickname}}</text>发送了名片</view>
+            <view class="sub" wx:if="{{value.type == 2}}"><text class='nickname_color'>{{value.nickname}}</text>为<text class='nickname_color'>{{value.tags_nickname}}</text>发送了<text class="locusItemInfo">【{{value.action}}】</text></view>
+            <text class="locusItemItem">{{value.record_time_hour}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+
+<!-- 推送提示 -->
+
+
+<!-- 底部固定 -->
+<view class="bottomFiexdBox">
+  <!--<view class="locusBottomTips">当前还可互动{{click_can_send_num ? click_can_send_num : 0}}次</view>-->
+  <view class="flex bottomFiexd gridXt">
+    <view class="sub bottomItemBtn" catchtap="show_add_tag" hover-class="hover"><text class="iconfont icon-biaoqian"></text>新增标签</view>
+    <!--<view class="sub bottomItemBtn" hover-class="hover" catchtap='sendCard'><text class="iconfont icon-mingpian1"></text>名片发送</view>-->
+    <!--<view class="sub bottomItemBtn" wx:if="{{service_card_info.can_send == 1}}" hover-class="hover" catchtap="linkToTap" data-url='/pages/user/businessCard/userPush/userPush?uid={{user_detail.user_info.uid}}'><text class="iconfont icon-tuisong"></text>发送</view>-->
+  </view>
+</view>
+
+<!-- 新增标签弹窗 -->
+<view class="floatBox labelPopBox" wx:if="{{show_add_tag}}">
+  <view class="floatBoxBg" catchtap="show_add_tag"></view>
+  <form bindsubmit="setTags">
+    <view class="flex labelPopCont">
+      <input class="sub labelPopInp" type="text" name="tag" placeholder="请输入标签" cursor-spacing="10" ></input>
+      <button form-type="submit" class="labelPopBtn">完成</button>
+    </view>
+  </form>
+</view>
