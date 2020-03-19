@@ -48,7 +48,7 @@ button.search-btn icon{ vertical-align: top; margin-top: 15rpx;}
 .menu{padding:20rpx 0;box-sizing: border-box;}
 .menu-item{ width: 25%; float: left; font-size: 26rpx;vertical-align: bottom;background-color: transparent;line-height: inherit;}
 .menu-item:nth-child(n+5){ margin-top: 20rpx;}
-.menu-item-img{ width:78rpx; height: 78rpx;margin: 0 auto; margin-bottom: 8rpx; display: block;}
+.menu-item-img{ width:78rpx; height: 78rpx;margin: 0 auto; margin-bottom: 8rpx; display: block;border-radius: 50%;}
 /* 分类自定义 */
 .menu-five .menu-item{width:20%;margin-top: 0;}
 .menu-five .menu-item:nth-child(n+6){margin-top:20rpx;}

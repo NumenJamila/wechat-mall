@@ -186,6 +186,12 @@
         "selectedIconPath": "/images/superbar/6e5fdd59df3b012c86961b7173967763_in.png"
       },
       {
+        "pagePath": "pages/shop/mallcate/mallcate",
+        "text": "分类",
+        "iconPath": "/images/superbar/772fc2afef7a2021cca37ee9706f730c.png",
+        "selectedIconPath": "/images/superbar/772fc2afef7a2021cca37ee9706f730c_in.png"
+      },
+      {
         "pagePath": "pages/custom/custom_671426628",
         "text": "直播",
         "iconPath": "/images/superbar/772fc2afef7a2021cca37ee9706f730c.png",

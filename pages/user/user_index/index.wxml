@@ -234,7 +234,7 @@
       </view>
     </view>
   </view>
-<!-- 设置 -->
+  <!-- 设置 -->
   <view class="myCard">
     <view class="projectBlock">
       <block wx:for="{{menus}}" wx:key="{{index}}">
@@ -244,29 +244,29 @@
       <!-- 运营中心 -->
     </view>
   </view>
-    <!-- 核销 -->
-    <!-- <template is="line_menu" wx:if="{{userInfo.exam}}" data="{{...heixiao}}" /> -->
+  <!-- 核销 -->
+  <!-- <template is="line_menu" wx:if="{{userInfo.exam}}" data="{{...heixiao}}" /> -->
 
-    <!-- 分销中心 -->
-    <!-- <template is="line_menu" wx:if="{{userInfo.distribution}}" data="{{...distribution}}" /> -->
+  <!-- 分销中心 -->
+  <!-- <template is="line_menu" wx:if="{{userInfo.distribution}}" data="{{...distribution}}" /> -->
 
-    <!-- <block wx:for="{{menus}}" wx:key="{{index}}"> -->
-    <!-- 单行链接 -->
-    <!-- <template is="line_menu" wx:if="{{item.type=='line'}}" data="{{...item}}" /> -->
+  <!-- <block wx:for="{{menus}}" wx:key="{{index}}"> -->
+  <!-- 单行链接 -->
+  <!-- <template is="line_menu" wx:if="{{item.type=='line'}}" data="{{...item}}" /> -->
 
-    <!-- 列表组 -->
-    <!-- <template is="list_menu" wx:if="{{item.type=='list'}}" data="{{...item}}" /> -->
+  <!-- 列表组 -->
+  <!-- <template is="list_menu" wx:if="{{item.type=='list'}}" data="{{...item}}" /> -->
 
-    <!-- 卡片 -->
-    <!-- <template is="card_menu" wx:if="{{item.type=='card'}}" data="{{...item}}" /> -->
-    <!-- </block> -->
-    <!-- 运营中心 -->
-    <!-- <template is="line_menu" wx:if="{{userInfo.operating}}" data="{{...operating}}" /> -->
+  <!-- 卡片 -->
+  <!-- <template is="card_menu" wx:if="{{item.type=='card'}}" data="{{...item}}" /> -->
+  <!-- </block> -->
+  <!-- 运营中心 -->
+  <!-- <template is="line_menu" wx:if="{{userInfo.operating}}" data="{{...operating}}" /> -->
 
 
-  <view class="copyright grey">
+  <!-- <view class="copyright grey">
     <view class="copyright-text" wx:if="{{userInfo.app_copy_right}}" catchtap='onCompanyTap'>{{userInfo.app_copy_right}}</view>
-  </view>
+  </view> -->
 
 </block>
 
@@ -283,7 +283,7 @@
 <!-- 列表组 -->
 <template name="list_menu">
   <view class="projectBlockItem">
-   <!-- {{isshow == true ? 'arrowR arrowRv' :'arrowR'}} -->
+    <!-- {{isshow == true ? 'arrowR arrowRv' :'arrowR'}} -->
     <view class="projectTit" bindtap="onToggleTap" data-name="{{name}}">
       <text class="projectTitIco iconfont {{icon?icon:'icon-circle'}}"></text>
       <text>{{text}}</text>
@@ -299,7 +299,7 @@
 <!-- 卡片块 -->
 <template name="card_menu">
   <view class="projectBlockItem">
-   <!-- {{isshow == true ? 'arrowR arrowRv' :'arrowR'}} -->
+    <!-- {{isshow == true ? 'arrowR arrowRv' :'arrowR'}} -->
     <view class="projectTit" bindtap="onToggleTap" data-name="{{name}}">
       <text class="projectTitIco iconfont {{icon?icon:'icon-circle'}}"></text>
       <text>{{text}}</text>
